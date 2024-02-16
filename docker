@@ -1,0 +1,33 @@
+# Build phase
+FROM node:18.16.0-alpine as base
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package*.json ./
+
+RUN npm ci --omit=dev && \
+    npm cache clean --force && \
+    mv node_modules ../
+
+# Bundle app source
+COPY . .
+
+# Install bash
+RUN apk add --no-cache bash
+
+# Production phase
+FROM node:18.16.0-alpine as production
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy only files needed for production execution
+COPY --from=base /usr/src/node_modules ./node_modules
+COPY --from=base /usr/src/app/build ./build
+COPY package.json package-lock.json ./
+
+EXPOSE 5000
+
+CMD ["npm", "start"]

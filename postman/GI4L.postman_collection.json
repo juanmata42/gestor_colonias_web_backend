@@ -1,0 +1,5466 @@
+{
+	"info": {
+		"_postman_id": "23ddcdb2-0359-433b-943a-74cbc4e0c992",
+		"name": "GI4L",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Administration",
+			"item": [
+				{
+					"name": "Apps",
+					"item": [
+						{
+							"name": "Get apps",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/apps",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps"
+									],
+									"query": [
+										{
+											"key": "active",
+											"value": "true",
+											"description": "Filter by app status (active or not, boolean)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get app by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/apps/Health",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps",
+										"Health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create App",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "Disabilities",
+											"description": "App ID",
+											"type": "default"
+										},
+										{
+											"key": "active",
+											"value": "true",
+											"description": "App status",
+											"type": "default"
+										},
+										{
+											"key": "color",
+											"value": "#374FFF",
+											"description": "App color",
+											"type": "default"
+										},
+										{
+											"key": "report",
+											"value": "true",
+											"description": "The app can provide a report when finishing diagnostic or not (Boolean)",
+											"type": "default"
+										},
+										{
+											"key": "route_patients_page",
+											"value": "disabilities",
+											"type": "default"
+										},
+										{
+											"key": "route_page",
+											"value": "disabilities",
+											"type": "default"
+										},
+										{
+											"key": "component",
+											"value": "disabilities",
+											"type": "default"
+										},
+										{
+											"key": "lang",
+											"value": "[\n  {\n    \"language\": \"EN\",\n    \"tool_name\": \"GI4L Disability Assessment Tool\",\n    \"header_title\": \"GI4L Disability Assessment Tool\",\n    \"short_header\": \"Disability\",\n    \"name\": \"GI4L Disability Assessment Tool\"\n  },\n  {\n    \"language\": \"BN\",\n    \"tool_name\": \"GI4L অক্ষমতা মূল্যায়ন টুল\",\n    \"header_title\": \"GI4L অক্ষমতা মূল্যায়ন টুল\",\n    \"short_header\": \"'অক্ষমতা\",\n    \"name\": \"GI4L অক্ষমতা মূল্যায়ন টুল\"\n  }\n]",
+											"description": "App literals (Array)",
+											"type": "default"
+										},
+										{
+											"key": "treeList",
+											"value": "[\"MAIN-fe6b5215-51be-4792-a609-2f2aee0112ae\"]",
+											"description": "App tree list (Array)",
+											"type": "default"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/apps/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps",
+										""
+									],
+									"query": [
+										{
+											"key": "send",
+											"value": "false",
+											"description": "App creation MQTT message can be sent or not (Boolean)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send App",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/apps/send/Disabilities",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps",
+										"send",
+										"Disabilities"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update app",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"treeList\": [\r\n        {\r\n                \"tree_id\": \"MAIN-da5ffcaf-933a-41aa-82d0-e35f3f527981\",\r\n                \"order\": 1\r\n            },\r\n            {\r\n                \"tree_id\": \"MAIN-e168a27c-3914-47e3-a510-597e0ddb78b9\",\r\n                \"order\": 2\r\n            }\r\n        ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/apps/MinorInjuries",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps",
+										"MinorInjuries"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete app",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/apps/test",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"apps",
+										"test"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Constants",
+					"item": [
+						{
+							"name": "Get Constant by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/constants/monthWageRanges",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"constants",
+										"monthWageRanges"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create constant",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": {\n        \"EN\": \"Cutting\",\n        \"BN\": \"কাটা\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/constants",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"constants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create bulk constants",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "constants",
+											"description": "Constants file, containing a JSON array",
+											"type": "file",
+											"src": "/home/rucatto/Documents/GI4L/BackEndServer/init/constants.json"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/constants/bulk",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"constants",
+										"bulk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Constant",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    \"0-1000\",\n    \"1001-2000\",\n    \"2001-3000\",\n    \"3001-4000\",\n    \"4001-5000\",\n    \"5001-6000\",\n    \"6001-7000\",\n    \"7001-8000\",\n    \"8001-9000\",\n    \"9001-10000\",\n    \"10001-15000\",\n    \"15001-20000\",\n    \"20001+\"\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/constants/overtimeRanges",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"constants",
+										"overtimeRanges"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DB",
+					"item": [
+						{
+							"name": "Delete DB",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"3CGM20nf2y9Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/db",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"db"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get DB",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"password\": \"3CGM20nf2y9Z\",\n    \"tables\": [\"users\", \"factories\", \"usersFactories\", \"apps\", \n    \"i18n-Apps\", \"appPermissions\", \"trees\", \"appsTrees\", \"nodes\", \"i18n-Nodes\",\n    \"childrenNodes\", \"regions\", \"i18n-Regions\", \"activities\", \"i18n-Activities\",\n    \"patients\", \"diagnostics\", \"steps\", \"results\", \"resultSteps\", \"constants\",\n    \"examples\", \"relScores\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/db",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"db"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create DB",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "db",
+											"description": "DB file in JSON format",
+											"type": "file",
+											"src": "/Users/rubencapote/Downloads/response.json"
+										},
+										{
+											"key": "password",
+											"value": "3CGM20nf2y9Z",
+											"description": "Management password",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/db",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"db"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Documents",
+					"item": [
+						{
+							"name": "Get Document",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/documents/disabilityDoc0?embed=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"documents",
+										"disabilityDoc0"
+									],
+									"query": [
+										{
+											"key": "embed",
+											"value": "1",
+											"description": "Get embedded (1) or regular file (0)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get External Document",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/documents/external/1689251669557-6bd73e36-1200-4f4d-b30a-62ca6436a954",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"documents",
+										"external",
+										"1689251669557-6bd73e36-1200-4f4d-b30a-62ca6436a954"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Document",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "document",
+											"description": "Document file",
+											"type": "file",
+											"src": "/Users/rubencapote/Downloads/GI4L_TOMO 2 (1).pdf"
+										},
+										{
+											"key": "ref",
+											"value": "docTest",
+											"description": "fileName if you want to specify it",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/documents",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"documents"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Bulk Documents",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "documents",
+											"description": "File documents",
+											"type": "file",
+											"src": [
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc0.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc1.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc2.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc3.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc4.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc5.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc6.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc7.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc8.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc9.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc10.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc11.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc12.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc13.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc14.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc15.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc16.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc17.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc18.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc19.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc20.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc21.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc22.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc23.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc24.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc25.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc26.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc27.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc28.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc29.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc30.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc31.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc32.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc33.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc34.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc35.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc36.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc37.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc38.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc39.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc40.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc41.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc42.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc43.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc44.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc45.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc46.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc47.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc48.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc49.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc50.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc51.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc52.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc53.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc54.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc55.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc56.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc57.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc58.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc59.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc60.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc61.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc62.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc63.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc64.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc65.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc66.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc67.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc68.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc69.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc70.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc71.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc72.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc73.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc74.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc75.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc76.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc77.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc78.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc79.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc80.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc81.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc82.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc83.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc84.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc85.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc86.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc87.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc88.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc89.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc90.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc91.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc92.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc93.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc94.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc95.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc96.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc97.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc98.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc99.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc100.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc101.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc102.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc103.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc104.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc105.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc106.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc107.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc108.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc109.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc110.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc111.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc112.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc113.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc114.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc115.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc116.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc117.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc118.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc119.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc120.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc121.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc122.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc123.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc124.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc125.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc126.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc127.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc128.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc129.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc130.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc131.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc132.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc133.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc134.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc135.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc136.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc137.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc138.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc139.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc140.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc141.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc142.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc143.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc144.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc145.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc146.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc147.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc148.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc149.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc150.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc151.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc152.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc153.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc154.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc155.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc156.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc157.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc158.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc159.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc160.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc161.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc162.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc163.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc164.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc165.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc166.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc167.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc168.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc169.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc170.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc171.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc172.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc173.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc174.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc175.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc176.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc177.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc178.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc179.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc180.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc181.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc182.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc183.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc184.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc185.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc186.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc187.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc188.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc189.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc190.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc191.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc192.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc193.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc194.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc195.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc196.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc197.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc198.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc199.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc200.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc201.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc202.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc203.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc204.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc205.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc206.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc207.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc208.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc209.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc210.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc211.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc212.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc213.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc214.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc215.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc216.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc217.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc218.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc219.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc220.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc221.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc222.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc223.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc224.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc225.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc226.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc227.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc228.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc229.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc230.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc231.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc232.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc233.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc234.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc235.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc236.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc237.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc238.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc239.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc240.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc241.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc242.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc243.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc244.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc245.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc246.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc247.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc248.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc249.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc250.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc251.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc252.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc253.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc254.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc255.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc256.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc257.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc258.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc259.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc260.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc261.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc262.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc263.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc264.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc265.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc266.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc267.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc268.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc269.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc270.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc271.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc272.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc273.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc274.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc275.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc276.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc277.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc278.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc279.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc280.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc281.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc282.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc283.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc284.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc285.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc286.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc287.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc288.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc289.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc290.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc291.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc292.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc293.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc294.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc295.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc296.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc297.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc298.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc299.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc300.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc301.pdf",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/documents/disabilityDoc302.pdf"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/documents/bulk",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"documents",
+										"bulk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Document",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/documents/MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"documents",
+										"MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Factories",
+					"item": [
+						{
+							"name": "Get factories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories"
+									],
+									"query": [
+										{
+											"key": "sector",
+											"value": "rmg",
+											"description": "Filter by factory sector",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Select page if pagination needed",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "page size if pagination needed",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "asc",
+											"description": "ASC/DESC order",
+											"disabled": true
+										},
+										{
+											"key": "field",
+											"value": "name",
+											"description": "Filed to take into account while ordering",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search factories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories?search=mai&page=1&size=5&order=desc",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "mai",
+											"description": "Input to search"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page to request"
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"description": "page size"
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"description": "ASC/DESC order"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get factory by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"MAIN"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Factories from current user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Current device Factories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/current",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"current"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create factory",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "test",
+											"description": "factory ID",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Pruebas local",
+											"description": "factory name",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "3/1, East Chandana, Joydebpur Rd, Gazipur",
+											"description": "factory address",
+											"type": "text"
+										},
+										{
+											"key": "showLevel",
+											"value": "1",
+											"description": "Name and lastname from patients required (1) or not(0)",
+											"type": "text"
+										},
+										{
+											"key": "country",
+											"value": "Bangladesh",
+											"type": "text"
+										},
+										{
+											"key": "coordinates",
+											"value": "[90.407834,23.994488]",
+											"description": "factory coordinates (array in string type)",
+											"type": "text"
+										},
+										{
+											"key": "sector",
+											"value": "rmg",
+											"description": "factory sector",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"description": "factory image",
+											"type": "file",
+											"src": "/Users/rubencapote/Downloads/esquema mailing.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/factories",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update factory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"coordinates\": [\r\n            90.407834,\r\n            23.994488\r\n        ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/factories/test",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete factory",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"MAIN"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Factory Contacts",
+					"item": [
+						{
+							"name": "Get factory contacts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/contacts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"contacts"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "test@gi4l.net",
+											"description": "Filter by email",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get factory contact by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/contacts/MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"contacts",
+										"MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create factory contact",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"test\",\n    \"lastname\": \"contact\",\n    \"email\": \"test@globalincubator.com\",\n    \"address\": \"fake street 123\",\n    \"role\": \"alfarero\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/factories/MAIN/contacts",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"MAIN",
+										"contacts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update factory contact",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"updated\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/factories/contacts/MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"contacts",
+										"MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete factory contact",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/factories/contacts/MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"factories",
+										"contacts",
+										"MAIN-baf3ffc1-1df1-476b-bf31-8b67b8335d67"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fixes",
+					"item": [
+						{
+							"name": "Done",
+							"item": [
+								{
+									"name": "FIX reports",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/reports",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"reports"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX InOuts",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/administration/api/fixes/inouts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"administration",
+												"api",
+												"fixes",
+												"inouts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX employees Table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/employees",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"employees"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX ReportFiles Table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/reportFiles",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"reportFiles"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX images table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/images",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"images"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX documents table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/documents",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"documents"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX examples table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/examples",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"examples"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX relScores table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/relScores",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"relScores"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX i18nNodes table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/i18nNodes",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"i18nNodes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX interval",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/interval",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"interval"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX interval type",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/intervalType",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"intervalType"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX nodes table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/nodes",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"nodes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX nodes 2 table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/nodes2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"nodes2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX diagnostics table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/diagnostics",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"diagnostics"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX treesOnEdit table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/treesOnEdit",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"treesOnEdit"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX appPermissions",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/appPermissions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"appPermissions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX scoreTypes",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/scoreTypes",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"scoreTypes"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX interventions table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/interventions",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"interventions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create CSV Diagnostics",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "patients",
+													"type": "file",
+													"src": "/Users/rubencapote/Documents/datos/akh/patients.csv"
+												},
+												{
+													"key": "diagnostics",
+													"type": "file",
+													"src": "/Users/rubencapote/Documents/datos/akh/diagnostics.csv"
+												},
+												{
+													"key": "results",
+													"type": "file",
+													"src": "/Users/rubencapote/Documents/datos/akh/results.csv"
+												},
+												{
+													"key": "resultSteps",
+													"type": "file",
+													"src": "/Users/rubencapote/Documents/datos/akh/resultSteps.csv"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/diagnostics/csv",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"diagnostics",
+												"csv"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX patients",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/patients",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"patients"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add deleted field in users",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/deletedUsers",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"deletedUsers"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "New factory fields",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/newFactoryFields",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"newFactoryFields"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "New factory fields 2",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/newFactoryFields2",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"newFactoryFields2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Fix gender language",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/fixGenderLanguage",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"fixGenderLanguage"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create factory contacts",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/factoryContacts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"factoryContacts"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Pending",
+							"item": [
+								{
+									"name": "Create manufacturers table",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/manufacturers",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"manufacturers"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX add insertion date in diagnostics",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/diagnosticsInsertionDate",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"diagnosticsInsertionDate"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX activities employees",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/addEmployeesColumn",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"addEmployeesColumn"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FIX activities deleted",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{url}}/api/administration/fixes/addDeletedColumn",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"administration",
+												"fixes",
+												"addDeletedColumn"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Images",
+					"item": [
+						{
+							"name": "Get Image",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/images/MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"images",
+										"MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "Image file (jpg, jpeg, png)",
+											"type": "file",
+											"src": "/Users/rubencapote/Downloads/image.png"
+										},
+										{
+											"key": "ref",
+											"value": "imageTest",
+											"description": "Specify name if needed",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/images",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"images"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Bulk Images",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "images",
+											"description": "Image files (png, jpg, jpeg)",
+											"type": "file",
+											"src": [
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg0.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg1.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg2.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg3.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg4.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg5.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg6.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg7.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg8.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg9.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg10.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg11.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg12.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg13.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg14.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg15.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg16.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg17.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg18.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg19.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg20.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg21.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg22.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg23.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg24.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg25.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg26.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg27.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg28.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg29.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg30.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg31.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg32.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg33.png",
+												"/Users/rubencapote/Documents/GI4L/BackEndServer/init/images/disabilityImg34.png"
+											]
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/images/bulk",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"images",
+										"bulk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Image",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/images/MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"images",
+										"MAIN-b4b8f7e8-c02f-4713-af0e-b3b99cb59ca4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Interventions",
+					"item": [
+						{
+							"name": "Get Interventions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/interventions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions"
+									],
+									"query": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "user_id",
+											"value": "",
+											"description": "Filter by user ID",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "",
+											"description": "Filter by type (call or in person)",
+											"disabled": true
+										},
+										{
+											"key": "date",
+											"value": "",
+											"description": "Filter by date",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Specify page (if needed)",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"description": "Specify page size",
+											"disabled": true
+										},
+										{
+											"key": "deleted",
+											"value": "true",
+											"description": "Get deleted factories",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Interventions by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/interventions/MAIN-923486",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions",
+										"MAIN-923486"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search interventions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/interventions?search=muham&factory_id=MAIN&order=asc&field=name&page=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "muham"
+										},
+										{
+											"key": "factory_id",
+											"value": "MAIN"
+										},
+										{
+											"key": "order",
+											"value": "asc"
+										},
+										{
+											"key": "field",
+											"value": "name"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Intervention",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "intervention",
+											"value": "{\n    \"factory_id\": \"MAIN\",\n    \"factory_contact\": \"Muhammad\",\n    \"signer\": \"Jesús\",\n    \"type\": \"call\",\n    \"date\": \"2023-01-21\",\n    \"arrival_time\": \"11:00\",\n    \"departure_time\": \"11:15\",\n    \"discrepancies\": 0,\n    \"description_EN\": \"Everything is ine\",\n    \"description_BN\": \"সবকিছু ঠিক আছে\"\n}",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/rubencapote/Downloads/image.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/interventions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update an intervention",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description_EN\": \"Everything is fine\",\n    \"description_BN\": \"সবকিছু ঠিক আছে\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/interventions/MAIN-20ab6b8f-8e94-4888-b4d7-83845543679e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions",
+										"MAIN-20ab6b8f-8e94-4888-b4d7-83845543679e"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an intervention",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/interventions/MAIN-4f49b44b-a587-4f74-8e0f-19bef7fcb27f",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"interventions",
+										"MAIN-4f49b44b-a587-4f74-8e0f-19bef7fcb27f"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Get microservice status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Manufacturers",
+					"item": [
+						{
+							"name": "Get manufacturers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/manufacturers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"manufacturers"
+									],
+									"query": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "ma",
+											"description": "Search by criteria",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get manufacturer by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/manufacturers/MAIN-183745623",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"manufacturers",
+										"MAIN-183745623"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create manufacturer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"MAIN Manufacturers Ltd.\",\n    \"short_name\": \"MAIN\",\n    \"address\": \"Sonargaon Hotel\",\n    \"country\": \"Bangladesh\",\n    \"factories_id\": [\"MAIN\"]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/manufacturers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"manufacturers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a manufacturer",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"updated\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/administration/manufacturers/MAIN-fe925e50-c69f-4277-874e-6cf3c5a4f396",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"manufacturers",
+										"MAIN-fe925e50-c69f-4277-874e-6cf3c5a4f396"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a manufacturer",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/administration/manufacturers/MAIN-e9219f18-18fe-4b38-b5c8-b19632b0d131",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"administration",
+										"manufacturers",
+										"MAIN-e9219f18-18fe-4b38-b5c8-b19632b0d131"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "INIT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"3CGM20nf2y9Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/administration/init",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"administration",
+								"init"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INIT device",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "{\n        \"id\": \"manolo\",\n        \"name\": \"Pruebas local\",\n        \"address\": \"3/1, East Chandana, Joydebpur Rd, Gazipur\",\n        \"country\": \"Bangladesh\",\n        \"coordinates\": [\n            90.407834,\n            23.994488\n        ],\n        \"sector\": \"rmg\"\n    }",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/administration/init/device/Factory13",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"administration",
+								"init",
+								"device",
+								"Factory13"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evaluations",
+			"item": [
+				{
+					"name": "Activities",
+					"item": [
+						{
+							"name": "Create Bulk Activities",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "activities",
+											"description": "Activities file (JSON array)",
+											"type": "file",
+											"src": "/home/rucatto/Documents/GI4L/BackEndServer/init/activities.json"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/bulk?factory_id=MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"bulk"
+									],
+									"query": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Specify factory ID if different from device"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Single Activity",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": {\n        \"EN\": \"test\",\n        \"BN\": \"bangla test\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities?factory_id=MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Specify factory ID if different from device"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Activity",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"employees\": 125,\n    \"name\": {\n        \"EN\": \"Something\",\n        \"BN\": \"কিছু\"\n    },\n    \"deleted\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get activities",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities?factory_id=MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Sewing",
+											"description": "Filter by name",
+											"disabled": true
+										},
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Filter by factory ID"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get activity by ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"factories_id\": [\r\n        \"tarasima\",\r\n        \"crp\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update activities from factory",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"activities\":[{\n    \"id\": \"MAIN-0227377f-b3d6-4efc-b395-791ecca5c5d7\",\n    \"name\":{\n                \"EN\": \"Cuttesfgse\",\n               \"BN\" : \"কাটাকাsefsef\"\n            }\n},{\n    \"id\": \"MAIN-82d1c724-8c6b-44c1-8167-6c06754ccd4e\",\n    \"name\":{\n                \"EN\": \"Sewisefesfsefse\",\n               \"BN\" : \"কাটাকাsewingwiwiwi\"\n            }\n},{\n    \"id\": \"MAIN-a3d29990-5d06-40a2-9fd3-7f199da7192a\",\n    \"name\":{\n                \"EN\": \"Finishing/Ironingawdfwadaw\",\n               \"BN\" : \"ফিনিশিংeeee / edfefইস্ত্রি\"\n            }\n}\n]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/factories/MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"factories",
+										"MAIN"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Activities by language and search",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/names?language=EN&search=fi",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"names"
+									],
+									"query": [
+										{
+											"key": "language",
+											"value": "EN"
+										},
+										{
+											"key": "search",
+											"value": "fi"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Activity Translations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/activities/translations?language=EN&search=packing",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"activities",
+										"translations"
+									],
+									"query": [
+										{
+											"key": "language",
+											"value": "EN"
+										},
+										{
+											"key": "search",
+											"value": "packing"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Diagnostics",
+					"item": [
+						{
+							"name": "Get diagnostics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics"
+									],
+									"query": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "patient_id",
+											"value": "MAIN-12345",
+											"description": "Filter by patient ID",
+											"disabled": true
+										},
+										{
+											"key": "app_id",
+											"value": "Covid",
+											"description": "Filter by App ID",
+											"disabled": true
+										},
+										{
+											"key": "user_id",
+											"value": "MAIN-12345",
+											"description": "Filter by user ID (Creator)",
+											"disabled": true
+										},
+										{
+											"key": "date",
+											"value": "2023-11-20",
+											"description": "Filter by date (YYYY-MM-DD)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get diagnostic by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-06cae764-35c8-4c28-9979-221829df649a",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"MAIN-06cae764-35c8-4c28-9979-221829df649a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post diagnostic",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Specify factory ID",
+											"type": "text"
+										},
+										{
+											"key": "images",
+											"description": "diagnostic images files",
+											"type": "file",
+											"src": [
+												"/C:/Users/Rubén Capote/Desktop/4k img test.jpg",
+												"/C:/Users/Rubén Capote/Desktop/minion.jpg"
+											],
+											"disabled": true
+										},
+										{
+											"key": "app_id",
+											"value": "Health",
+											"description": "Specify app ID",
+											"type": "default"
+										},
+										{
+											"key": "app_version",
+											"value": "1",
+											"description": "Specify app version",
+											"type": "default"
+										},
+										{
+											"key": "patient_id",
+											"value": "MAIN-73d3be79-f110-4342-877f-5dc807ef923a",
+											"type": "default"
+										},
+										{
+											"key": "type",
+											"value": "injury",
+											"description": "Diagnostic type",
+											"type": "default"
+										},
+										{
+											"key": "comments",
+											"value": "you are ok",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post bulk diagnostics",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "diagnostics",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "results",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "resultSteps",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/bulk",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"bulk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update diagnostic",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comments\": \"yor are almost fine\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/f001-8z8CeGknnQkK32WuDNZL",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"f001-8z8CeGknnQkK32WuDNZL"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update diagnostic Steps",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"node\": \"MAIN-UUUCZS0llftx9DaM4NlK\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-K2iwVXH1tTH8mfsVJp34/steps",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"MAIN-K2iwVXH1tTH8mfsVJp34",
+										"steps"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Finish diagnostic",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-7LYy6ViLbkkD0ruz5C4j/finish",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"MAIN-7LYy6ViLbkkD0ruz5C4j",
+										"finish"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete diagnostic by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/tarasima-55967d4b-6e51-4c2f-bd29-e65c9c9f98ac",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"tarasima-55967d4b-6e51-4c2f-bd29-e65c9c9f98ac"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send diagnostics",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/diagnostics/send",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"diagnostics",
+										"send"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Nodes",
+					"item": [
+						{
+							"name": "Get nodes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/nodes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"nodes"
+									],
+									"query": [
+										{
+											"key": "tree_id",
+											"value": "MAIN-12345",
+											"description": "Select nodes by tree ID",
+											"disabled": true
+										},
+										{
+											"key": "parent_id",
+											"value": "MAIN-12345",
+											"description": "Select children nodes providing parent node ID",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get node by ID",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/nodes/MAIN-a9133cfe-1942-4a37-9e19-b128c09c2d78",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"nodes",
+										"MAIN-a9133cfe-1942-4a37-9e19-b128c09c2d78"
+									],
+									"query": [
+										{
+											"key": "edit",
+											"value": "true",
+											"description": "Select node by ID on edit mode",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Node",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tree_id\": \"MAIN-b724af3a-7d71-4b2b-bfcc-122206b433d2_V2\",\n    \"score\": 0,\n    \"type\": \"standard\",\n    \"category\": \"test\",\n    \"languages\": [\n        {\n            \"title\": \"test\",\n            \"check_title\": \"test\",\n            \"description\": \"test\",\n            \"subtitle\": \"test\",\n            \"examples\": [\n                {\n                    \"position\": 0,\n                    \"title\": \"test1\",\n                    \"documents\": [\n                        \"disabilityDoc0\"\n                    ]\n                }\n            ]\n        }\n    ],\n    \"children\": [\n        {\n            \"child_id\": \"MAIN-f60509ee-d258-4e98-8ed7-a537d086b215\",\n            \"position\": 0\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/nodes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"nodes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Node",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"type\": \"slider\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/nodes/MAIN-934865873",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"nodes",
+										"MAIN-934865873"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Node",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/nodes/MAIN-4138568423",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"nodes",
+										"MAIN-4138568423"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Patients",
+					"item": [
+						{
+							"name": "Get patients",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients"
+									],
+									"query": [
+										{
+											"key": "nid",
+											"value": "12345",
+											"description": "Select patient by NID",
+											"disabled": true
+										},
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Select patients by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Indicate which page you want to get",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Page size",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "asc",
+											"description": "ASC/DESC order",
+											"disabled": true
+										},
+										{
+											"key": "field",
+											"value": "name",
+											"description": "Field to take into account to order data",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get patient by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients/MAIN-d7f0a16c-143e-4242-bf3d-f04987e3e7c7",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients",
+										"MAIN-d7f0a16c-143e-4242-bf3d-f04987e3e7c7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search patients",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients?search=123&factory_id=MAIN&order=asc&field=name",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "123",
+											"description": "Content to search"
+										},
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Factory ID filter"
+										},
+										{
+											"key": "order",
+											"value": "asc",
+											"description": "ASC/DESC order"
+										},
+										{
+											"key": "field",
+											"value": "name",
+											"description": "Field to take into account while ordering"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create patient",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"name\": \"test\",\r\n        \"lastname\": \"hola\",\r\n        \"factory_id\": \"MAIN\",\r\n        \"age\": \"15-17\",\r\n        \"wage\": \"0-8000\",\r\n        \"allowance\": \"0-500\",\r\n        \"overtime\": \"0-1000\",\r\n        \"gender\": \"Male\",\r\n        \"region\": {\r\n            \"division\": \"Dhaka Division\",\r\n            \"district\": \"Narayanganj District\",\r\n            \"upazila\": \"Bandar Upazila\",\r\n            \"coordinates\": [\r\n                90.525,\r\n                23.6167\r\n            ]\r\n        },\r\n        \"activity\": \"Cutting\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create bulk patients",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "patients",
+											"description": "JSON file containing patients array",
+											"type": "file",
+											"src": "/Users/rubencapote/Documents/recover/patients.json"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients/bulk",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients",
+										"bulk"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update patient by ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nid\": \"testeo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients/MAIN-c21c7a12-05a3-44f3-880d-837a17f335c1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients",
+										"MAIN-c21c7a12-05a3-44f3-880d-837a17f335c1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete patient by ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/patients/MAIN-gl1G7AscZ7RHQPx6jmhS",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"patients",
+										"MAIN-gl1G7AscZ7RHQPx6jmhS"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Regions",
+					"item": [
+						{
+							"name": "Get regions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/regions",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"regions"
+									],
+									"query": [
+										{
+											"key": "division",
+											"value": "Barisal Division",
+											"description": "Specify division to get more specific results",
+											"disabled": true
+										},
+										{
+											"key": "district",
+											"value": "Barguna District",
+											"description": "Specify district to get more specific results",
+											"disabled": true
+										},
+										{
+											"key": "upazila",
+											"value": "Amtali Upazila",
+											"description": "Specify upazila to get more specific results",
+											"disabled": true
+										},
+										{
+											"key": "union",
+											"value": "Kukua Union",
+											"description": "Specify union to get more specific results",
+											"disabled": true
+										},
+										{
+											"key": "cityCorp",
+											"value": "Barisal City Corporation",
+											"description": "Specify city corporation to get more specific results",
+											"disabled": true
+										},
+										{
+											"key": "municipality",
+											"value": "Amtali",
+											"description": "Specify municipality to get more specific results",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get region by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/regions/MAIN-234897423",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"regions",
+										"MAIN-234897423"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get nested regions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/regions?nested=true&lang=EN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"regions"
+									],
+									"query": [
+										{
+											"key": "nested",
+											"value": "true",
+											"description": "Get nested regions"
+										},
+										{
+											"key": "lang",
+											"value": "EN",
+											"description": "Specify required language (EN/BN)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get region labels",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/regions/labels/?type=union&division=Barisal Division&district=Barisal District&upazila=Bakerganj Upazila",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"regions",
+										"labels",
+										""
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "union",
+											"description": "Type of labels you want to get"
+										},
+										{
+											"key": "division",
+											"value": "Barisal Division",
+											"description": "specify division if needed"
+										},
+										{
+											"key": "district",
+											"value": "Barisal District",
+											"description": "specify district if needed"
+										},
+										{
+											"key": "upazila",
+											"value": "Bakerganj Upazila",
+											"description": "specify upazila if needed"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get region by div, dist, upa, muni",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/regions?division=Barisal Division&district=Barguna District&upazila=Amtali Upazila&municipality=Amtali",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"regions"
+									],
+									"query": [
+										{
+											"key": "division",
+											"value": "Barisal Division"
+										},
+										{
+											"key": "district",
+											"value": "Barguna District"
+										},
+										{
+											"key": "upazila",
+											"value": "Amtali Upazila"
+										},
+										{
+											"key": "municipality",
+											"value": "Amtali"
+										},
+										{
+											"key": "id",
+											"value": "0149fb78-6f1f-445a-94e9-ce6c53a4f6c9",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Get microservice status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Trees",
+					"item": [
+						{
+							"name": "Get trees",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "covid",
+											"description": "Type of tree (covid, health, minorInjuries...)",
+											"disabled": true
+										},
+										{
+											"key": "version",
+											"value": "1",
+											"description": "Filter by version number",
+											"disabled": true
+										},
+										{
+											"key": "root_id",
+											"value": "MAIN-12345",
+											"description": "Get tree by its root node ID",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get tree by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/MAIN-VD2SJin8tEuwQjwogaOB",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										"MAIN-VD2SJin8tEuwQjwogaOB"
+									],
+									"query": [
+										{
+											"key": "edit",
+											"value": "true",
+											"description": "Tree on edit mode or not (Boolean)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create tree",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "tree",
+											"description": "Tree file",
+											"type": "file",
+											"src": "/Users/rubencapote/Documents/GI4L/backend/administration/init/trees/disabilities.xlsx"
+										},
+										{
+											"key": "type",
+											"value": "disabilities",
+											"description": "tree type",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/?send=false",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										""
+									],
+									"query": [
+										{
+											"key": "send",
+											"value": "false",
+											"description": "Tree creation MQTT message can be sent or not (Boolean)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clone Tree to Edit Mode",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/clone/MAIN-742d2dd1-0b8a-4f36-a775-5cb64822fe67",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										"clone",
+										"MAIN-742d2dd1-0b8a-4f36-a775-5cb64822fe67"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Save Tree On Edit Mode",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/save/MAIN-3486587423",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										"save",
+										"MAIN-3486587423"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Tree",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"version\": 6666\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/MAIN-34754835",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										"MAIN-34754835"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete tree",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/evaluations/trees/MAIN-48fd6b13-aa42-43be-8778-b79c1c2debcf_V2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"evaluations",
+										"trees",
+										"MAIN-48fd6b13-aa42-43be-8778-b79c1c2debcf_V2"
+									],
+									"query": [
+										{
+											"key": "edit",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "IAM",
+			"item": [
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Get microservice status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Specify page (if pagination needed)",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"description": "Specify page size (default is 10)",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "ru",
+											"description": "Search criteria",
+											"disabled": true
+										},
+										{
+											"key": "factory_id",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"description": "ASC/DESC order",
+											"disabled": true
+										},
+										{
+											"key": "field",
+											"value": "name",
+											"description": "Specify field taken into account to order result",
+											"disabled": true
+										},
+										{
+											"key": "nid",
+											"value": "12345",
+											"description": "Filter by NID",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "su@gi4l.net",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get current user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/MAIN-ab03794c-f779-4446-a61c-9a2e3ea447d7",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"MAIN-ab03794c-f779-4446-a61c-9a2e3ea447d7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"email\": \"test@ilo.org\",\n        \"password\": \"gi4l\",\n        \"name\": \"Test\",\n        \"lastname\": \"Admin\",\n        \"userFactories\": [\n            {\n                \"factory_id\": \"MAIN\"\n            }\n        ],\n        \"birthdate\": \"2000-12-12\",\n        \"gender\": \"male\",\n        \"nid\": \"testAdmin\",\n        \"telephone\": \"+34675869786\",\n        \"address\": \"Geneva\",\n        \"country\": \"Switzerland\",\n        \"appPermissions\": [\n            {\n                \"level\": 2,\n                \"app_id\": \"ILO\"\n            },\n            {\n                \"level\": 2,\n                \"app_id\": \"Covid\"\n            },\n            {\n                \"level\": 2,\n                \"sub_app_id\": \"Covid\",\n                \"app_id\": \"Dashboard\"\n            },\n            {\n                \"level\": 2,\n                \"sub_app_id\": \"ILO\",\n                \"app_id\": \"Dashboard\"\n            },\n            {\n                \"app_id\": \"Admin\",\n                \"level\": 2\n            }\n        ],\n        \"su\": false\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/iam/users/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"su@gi4l.net\",\r\n    \"password\": \"gi4l\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/iam/users/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Token User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsonResponse = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable('x-auth-token', jsonResponse.result.accessToken);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "hola",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/users/login/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"login",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update user by ID",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"appPermissions\": [\n            {\n                \"level\": 2,\n                \"app_id\": \"Token\"\n            },\n            {\n                \"level\": 2,\n                \"app_id\": \"Covid\"\n            },\n            {\n                \"level\": 2,\n                \"app_id\": \"Health\"\n            },\n            {\n                \"level\": 2,\n                \"app_id\": \"MinorInjuries\"\n            },\n            {\n                \"app_id\": \"Dashboard\",\n                \"level\": 2,\n                \"sub_app_id\": \"Covid\"\n            },\n            {\n                \"app_id\": \"Dashboard\",\n                \"level\": 2,\n                \"sub_app_id\": \"Health\"\n            },\n            {\n                \"app_id\": \"Dashboard\",\n                \"level\": 2,\n                \"sub_app_id\": \"MinorInjuries\"\n            },\n            {\n                \"app_id\": \"Dashboard\",\n                \"level\": 2,\n                \"sub_app_id\": \"ILO\"\n            }\n        ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/iam/users/MAIN-55cb94a6-5b01-4bfc-a9bf-ee8b70b482d8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"MAIN-55cb94a6-5b01-4bfc-a9bf-ee8b70b482d8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update current user",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"factories_id\": [\r\n        \"tarasima\",\r\n        \"crp\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/iam/users/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change current user password",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oldPassword\": \"gi4l\",\n    \"newPassword\": \"MacenTeri123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/iam/users/me/password",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"me",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ReGen User Password",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/MAIN-2a171067-e902-4e8e-8ba6-7081d52b38d5/password/regenerate",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"MAIN-2a171067-e902-4e8e-8ba6-7081d52b38d5",
+										"password",
+										"regenerate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/f001-zIDHBxJGUydyxNIXlVTG",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"f001-zIDHBxJGUydyxNIXlVTG"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete current user",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/iam/users/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"iam",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "InOuts",
+			"item": [
+				{
+					"name": "Employees",
+					"item": [
+						{
+							"name": "Get Employees",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/employees",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2023-01-21",
+											"description": "Filter by date",
+											"disabled": true
+										},
+										{
+											"key": "wid",
+											"value": "1238742364",
+											"description": "Filter by worker_id",
+											"disabled": true
+										},
+										{
+											"key": "rid",
+											"value": "MAIN-837465",
+											"description": "Filter by report ID",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "MAIN-837465",
+											"description": "Filter by ID",
+											"disabled": true
+										},
+										{
+											"key": "fid",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Specify page if pagination is needed",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "page size",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "asc",
+											"description": "ASC/DESC order",
+											"disabled": true
+										},
+										{
+											"key": "field",
+											"value": "name",
+											"description": "Field to order the data",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "Get Reports",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default",
+										"description": "Authentication token (Access token when login)"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/reports",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"reports"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "MAIN-e79b2431-fe6e-4a11-b965-32389e090a55",
+											"description": "Filter by ID",
+											"disabled": true
+										},
+										{
+											"key": "fid",
+											"value": "MAIN",
+											"description": "Filter by factory ID",
+											"disabled": true
+										},
+										{
+											"key": "date",
+											"value": "2023-11-21",
+											"description": "Filter by date (YYYY-MM-DD or latest)",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Specify page if pagintaion is needed",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Page size (Default is 10)",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"description": "ACS/DESC order",
+											"disabled": true
+										},
+										{
+											"key": "field",
+											"value": "date",
+											"description": "Field to take into account while ordering data",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Report",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "Report file (xslx, json, csv)",
+											"type": "file",
+											"src": "/Users/rubencapote/Documents/report.xlsx"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/reports/MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"reports",
+										"MAIN"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2023-03-05",
+											"description": "Specify date",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "full",
+											"description": "Specify type (full, inout)",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ReportFiles",
+					"item": [
+						{
+							"name": "Get Report File By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/reportFiles/MAIN-d924fdf0-c305-4cb5-b23e-442790f47ead",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"reportFiles",
+										"MAIN-d924fdf0-c305-4cb5-b23e-442790f47ead"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report files",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/reportFiles",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"reportFiles"
+									],
+									"query": [
+										{
+											"key": "report_id",
+											"value": "MAIN-a6a01dd3-8b50-4f31-8121-4e005e0abb88",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roles",
+					"item": [
+						{
+							"name": "Get Roles from Factory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/employees/roles/MAIN",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"employees",
+										"roles",
+										"MAIN"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get InOuts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{x-auth-token}}",
+								"type": "default",
+								"description": "Authentication token (accessToken in Login)"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/inouts",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"inouts"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "MAIN-5a07b6b6-8959-48ad-a45b-c17211277fa2",
+									"description": "Filter by ID",
+									"disabled": true
+								},
+								{
+									"key": "fid",
+									"value": "MAIN",
+									"description": "Filter by factory ID",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2023-01-21",
+									"description": "Filter by date",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Get microservice status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/logs/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"logs",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/logs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2023-02-27",
+									"description": "Date 1 in range",
+									"disabled": true
+								},
+								{
+									"key": "date2",
+									"value": "2023-02-28",
+									"description": "Date 2 in range",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "MAIN-12345",
+									"description": "Filter by user ID",
+									"disabled": true
+								},
+								{
+									"key": "factory_id",
+									"value": "MAIN",
+									"description": "Filter by factory ID",
+									"disabled": true
+								},
+								{
+									"key": "method",
+									"value": "POST",
+									"description": "Filter by method (POST, PUT, FRONTEND...)",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get log by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/logs/MAIN-D2g_HYABqq9fy3uhAber",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logs",
+								"MAIN-D2g_HYABqq9fy3uhAber"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2023-01-20",
+									"disabled": true
+								},
+								{
+									"key": "date2",
+									"value": "2023-02-28",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Frontend Log",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"error\",\n    \"reason\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/logs/frontend",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logs",
+								"frontend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MQTT",
+			"item": [
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Get microservice status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/mqtt/status",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"mqtt",
+										"status"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get MQTT messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/mqtt",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"mqtt"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "ID",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get message by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/mqtt/MAIN-6ee2c8d1-5622-449c-ab40-be3ce388be3d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"mqtt",
+								"MAIN-6ee2c8d1-5622-449c-ab40-be3ce388be3d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send MQTT Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/mqtt/send/6ee2c8d1-5622-449c-ab40-be3ce388be3d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"mqtt",
+								"send",
+								"6ee2c8d1-5622-449c-ab40-be3ce388be3d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete All MQTT Messages",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/mqtt/all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"mqtt",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Statistics",
+			"item": [
+				{
+					"name": "Reports Stats",
+					"item": [
+						{
+							"name": "Get report general total",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/general/total?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"general",
+										"total"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report general total surgeries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/general/total/surgeries?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"general",
+										"total",
+										"surgeries"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report general diagnostic type",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/general/diagnostic/type?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"general",
+										"diagnostic",
+										"type"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report general activity type",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/general/activity/type?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"general",
+										"activity",
+										"type"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report covid positive",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/covid/positive?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"covid",
+										"positive"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report covid total",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/covid/total?factoryId=MAIN&queryDate=2022-06-15",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"covid",
+										"total"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report type total",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/type/total?factoryId=MAIN&queryDate=2022-06-15&type=covid",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"type",
+										"total"
+									],
+									"query": [
+										{
+											"key": "factoryId",
+											"value": "MAIN"
+										},
+										{
+											"key": "queryDate",
+											"value": "2022-06-15"
+										},
+										{
+											"key": "type",
+											"value": "covid"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report total diagnoses",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/totaldiagnoses?startDate=2022-06-15&finalDate=2023-03-21",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"totaldiagnoses"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-15"
+										},
+										{
+											"key": "finalDate",
+											"value": "2023-03-21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report total covid",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/totalcovid?startDate=2022-06-15&finalDate=2023-03-21",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"totalcovid"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-15"
+										},
+										{
+											"key": "finalDate",
+											"value": "2023-03-21"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get report total surgeries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/statistics/totalsurgeries?startDate=2022-06-15&finalDate=2023-03-21",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"statistics",
+										"totalsurgeries"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2022-06-15"
+										},
+										{
+											"key": "finalDate",
+											"value": "2023-03-21"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get covid stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/covid?date1=2022-06-15&date2=2023-01-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"covid"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2022-06-15",
+									"description": "Date 1 range"
+								},
+								{
+									"key": "date2",
+									"value": "2023-01-21",
+									"description": "Date 2 range"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get simon web stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/simonweb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"simonweb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get health issues stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/health?date1=2022-06-15&date2=2023-01-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"health"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2022-06-15",
+									"description": "Date 1 range"
+								},
+								{
+									"key": "date2",
+									"value": "2023-01-21",
+									"description": "Date 2 range"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  minor injuries stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/minorInjuries?date1=2022-06-15&date2=2023-01-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"minorInjuries"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2022-06-15",
+									"description": "Date 1 range"
+								},
+								{
+									"key": "date2",
+									"value": "2023-01-21",
+									"description": "Date 2 range"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get ILO stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/ilo?date1=2022-06-15&date2=2023-01-21",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"ilo"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2022-06-15",
+									"description": "Date 1 range"
+								},
+								{
+									"key": "date2",
+									"value": "2023-01-21",
+									"description": "Date 2 range"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET stats excel file",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/statistics/excel?date1=2022-06-15&date2=2023-01-21&factory=tarasima&type=minorInjuries",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"statistics",
+								"excel"
+							],
+							"query": [
+								{
+									"key": "date1",
+									"value": "2022-06-15",
+									"description": "Date 1 range"
+								},
+								{
+									"key": "date2",
+									"value": "2023-01-21",
+									"description": "Date 2 range"
+								},
+								{
+									"key": "factory",
+									"value": "tarasima",
+									"description": "Specify factory ID (required)"
+								},
+								{
+									"key": "type",
+									"value": "minorInjuries",
+									"description": "Specify data type (required) (covid, health,  minorInjuries)"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

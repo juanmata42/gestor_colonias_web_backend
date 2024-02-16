@@ -1,0 +1,7 @@
+.git
+.gitignore
+.k8s_setup.yml
+.gitlab-ci.yml
+localinst
+init/documents
+init/images

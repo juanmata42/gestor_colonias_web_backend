@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  pg:
+    image: postgres:14 # Using PostgreSQL 14 as it's the latest LTS as of my last update
+    container_name: pg
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@pg:5432/postgres
+    depends_on:
+      - pg
+
+volumes:
+  db:
+    driver: local
