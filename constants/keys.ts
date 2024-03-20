@@ -38,7 +38,7 @@ export const validTreeTypes = ['covid', 'health', 'minorInjuries'];
 
 //PROFESSION RELATED KEYS
 
-export const professionKeys = ['name', 'displayName', 'type', 'evaluation'];
+export const professionKeys = ['name', 'displayName', 'type', 'action'];
 
 //DATABASE
 

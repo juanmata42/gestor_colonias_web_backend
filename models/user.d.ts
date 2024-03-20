@@ -1,4 +1,3 @@
-import { AppPermission } from './app';
 import { Tag } from './tag';
 
 export type User = {
@@ -13,13 +12,15 @@ export type User = {
   telephone: string;
   address: string;
   country: string;
+  education_level: string;
+  education_field: string;
+  job: string;
   su: boolean;
   locations: string[];
   subjects: string[];
   groups: string[];
   created_at: Date;
   updated_at?: Date;
-  appPermissions: AppPermission[];
   roles: string[];
   tags: Tag[];
 }

@@ -1,3 +1,4 @@
+import { AppPermission } from './app';
 import { Tag } from './tag';
 export type Role = {
   id: string;
@@ -7,6 +8,7 @@ export type Role = {
   deleted: boolean;
   i18n: i18nRole[];
   tags: Tag[];
+  app_permissions: AppPermission[];
 }
 export type i18nRole = {
   id: string;

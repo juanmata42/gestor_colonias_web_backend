@@ -1,8 +1,8 @@
 import { Tag } from './tag';
 
-export type i18nEvaluationType = {
+export type i18nActionType = {
   id: string;
-  evaluation_type_id: string;
+  action_type_id: string;
   language: string;
   name: string;
   description: string;
@@ -11,19 +11,19 @@ export type i18nEvaluationType = {
   deleted: boolean;
 }
 
-export type EvaluationType = {
+export type ActionType = {
   id: string;
   name: string;
-  i18n: i18nEvaluationType[];
+  i18n: i18nActionType[];
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
   tags: Tag[];
 }
 
-export type Evaluation = {
+export type Action = {
   id: string;
-  subject_id: string;
+  subject_id?: string;
   user_id: string;
   date: Date;
   result: string;
@@ -31,7 +31,7 @@ export type Evaluation = {
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  type: EvaluationType;
-  location: string;
+  type: ActionType;
+  location?: string;
   tags: Tag[];
 }

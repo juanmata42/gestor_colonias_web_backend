@@ -20,6 +20,9 @@ CREATE TABLE IF NOT EXISTS users (
   telephone TEXT,
   address TEXT,
   country TEXT,
+  education_level TEXT,
+  education_field TEXT,
+  job TEXT,
   su BOOLEAN NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
   updated_at TIMESTAMPTZ,
@@ -64,8 +67,8 @@ CREATE TABLE IF NOT EXISTS subject_types (
   deleted BOOLEAN DEFAULT FALSE
 );
 
--- Evaluation Table
-CREATE TABLE IF NOT EXISTS evaluations (
+-- Action Table
+CREATE TABLE IF NOT EXISTS actions (
   id SERIAL PRIMARY KEY,
   subject_id INTEGER REFERENCES subjects(id),
   user_id INTEGER REFERENCES users(id),
@@ -75,12 +78,12 @@ CREATE TABLE IF NOT EXISTS evaluations (
   created_at TIMESTAMPTZ NOT NULL,
   updated_at TIMESTAMPTZ,
   deleted BOOLEAN DEFAULT FALSE,
-  type_id INTEGER REFERENCES evaluation_types(id),
+  type_id INTEGER REFERENCES action_types(id),
   location_id INTEGER REFERENCES locations(id)
 );
 
--- Evaluation Types Table
-CREATE TABLE IF NOT EXISTS evaluation_types (
+-- Action Types Table
+CREATE TABLE IF NOT EXISTS action_types (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL,
@@ -220,10 +223,10 @@ CREATE TABLE IF NOT EXISTS i18n_group_types (
   deleted BOOLEAN DEFAULT FALSE
 );
 
--- i18nEvaluationType Table
-CREATE TABLE IF NOT EXISTS i18n_evaluation_types (
+-- i18nActionType Table
+CREATE TABLE IF NOT EXISTS i18n_action_types (
   id SERIAL PRIMARY KEY,
-  evaluation_type_id INTEGER REFERENCES evaluation_types(id),
+  action_type_id INTEGER REFERENCES action_types(id),
   language TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT,

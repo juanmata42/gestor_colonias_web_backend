@@ -2491,7 +2491,7 @@
 			]
 		},
 		{
-			"name": "Evaluations",
+			"name": "Actions",
 			"item": [
 				{
 					"name": "Activities",
@@ -2513,13 +2513,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/bulk?factory_id=MAIN",
+									"raw": "{{url}}/api/actions/activities/bulk?factory_id=MAIN",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"bulk"
 									],
@@ -2549,13 +2549,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities?factory_id=MAIN",
+									"raw": "{{url}}/api/actions/activities?factory_id=MAIN",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities"
 									],
 									"query": [
@@ -2584,13 +2584,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
+									"raw": "{{url}}/api/actions/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017"
 									]
@@ -2604,13 +2604,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities?factory_id=MAIN",
+									"raw": "{{url}}/api/actions/activities?factory_id=MAIN",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities"
 									],
 									"query": [
@@ -2648,13 +2648,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
+									"raw": "{{url}}/api/actions/activities/231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"231fdsas-55ce3ae4-f8f4-4b52-8742-3dfa72487017"
 									]
@@ -2677,13 +2677,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/factories/MAIN",
+									"raw": "{{url}}/api/actions/activities/factories/MAIN",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"factories",
 										"MAIN"
@@ -2705,13 +2705,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/names?language=EN&search=fi",
+									"raw": "{{url}}/api/actions/activities/names?language=EN&search=fi",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"names"
 									],
@@ -2735,13 +2735,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/activities/translations?language=EN&search=packing",
+									"raw": "{{url}}/api/actions/activities/translations?language=EN&search=packing",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"activities",
 										"translations"
 									],
@@ -2770,13 +2770,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics",
+									"raw": "{{url}}/api/actions/diagnostics",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics"
 									],
 									"query": [
@@ -2821,13 +2821,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-06cae764-35c8-4c28-9979-221829df649a",
+									"raw": "{{url}}/api/actions/diagnostics/MAIN-06cae764-35c8-4c28-9979-221829df649a",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"MAIN-06cae764-35c8-4c28-9979-221829df649a"
 									]
@@ -2890,13 +2890,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/",
+									"raw": "{{url}}/api/actions/diagnostics/",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										""
 									]
@@ -2930,13 +2930,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/bulk",
+									"raw": "{{url}}/api/actions/diagnostics/bulk",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"bulk"
 									]
@@ -2959,13 +2959,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/f001-8z8CeGknnQkK32WuDNZL",
+									"raw": "{{url}}/api/actions/diagnostics/f001-8z8CeGknnQkK32WuDNZL",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"f001-8z8CeGknnQkK32WuDNZL"
 									]
@@ -2988,13 +2988,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-K2iwVXH1tTH8mfsVJp34/steps",
+									"raw": "{{url}}/api/actions/diagnostics/MAIN-K2iwVXH1tTH8mfsVJp34/steps",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"MAIN-K2iwVXH1tTH8mfsVJp34",
 										"steps"
@@ -3009,13 +3009,13 @@
 								"method": "PUT",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/MAIN-7LYy6ViLbkkD0ruz5C4j/finish",
+									"raw": "{{url}}/api/actions/diagnostics/MAIN-7LYy6ViLbkkD0ruz5C4j/finish",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"MAIN-7LYy6ViLbkkD0ruz5C4j",
 										"finish"
@@ -3030,13 +3030,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/tarasima-55967d4b-6e51-4c2f-bd29-e65c9c9f98ac",
+									"raw": "{{url}}/api/actions/diagnostics/tarasima-55967d4b-6e51-4c2f-bd29-e65c9c9f98ac",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"tarasima-55967d4b-6e51-4c2f-bd29-e65c9c9f98ac"
 									]
@@ -3050,13 +3050,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/diagnostics/send",
+									"raw": "{{url}}/api/actions/diagnostics/send",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"diagnostics",
 										"send"
 									]
@@ -3075,13 +3075,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/nodes",
+									"raw": "{{url}}/api/actions/nodes",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"nodes"
 									],
 									"query": [
@@ -3120,13 +3120,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/nodes/MAIN-a9133cfe-1942-4a37-9e19-b128c09c2d78",
+									"raw": "{{url}}/api/actions/nodes/MAIN-a9133cfe-1942-4a37-9e19-b128c09c2d78",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"nodes",
 										"MAIN-a9133cfe-1942-4a37-9e19-b128c09c2d78"
 									],
@@ -3157,13 +3157,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/nodes",
+									"raw": "{{url}}/api/actions/nodes",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"nodes"
 									]
 								}
@@ -3185,13 +3185,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/nodes/MAIN-934865873",
+									"raw": "{{url}}/api/actions/nodes/MAIN-934865873",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"nodes",
 										"MAIN-934865873"
 									]
@@ -3205,13 +3205,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/nodes/MAIN-4138568423",
+									"raw": "{{url}}/api/actions/nodes/MAIN-4138568423",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"nodes",
 										"MAIN-4138568423"
 									]
@@ -3230,13 +3230,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients",
+									"raw": "{{url}}/api/actions/patients",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients"
 									],
 									"query": [
@@ -3287,13 +3287,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients/MAIN-d7f0a16c-143e-4242-bf3d-f04987e3e7c7",
+									"raw": "{{url}}/api/actions/patients/MAIN-d7f0a16c-143e-4242-bf3d-f04987e3e7c7",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients",
 										"MAIN-d7f0a16c-143e-4242-bf3d-f04987e3e7c7"
 									]
@@ -3307,13 +3307,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients?search=123&factory_id=MAIN&order=asc&field=name",
+									"raw": "{{url}}/api/actions/patients?search=123&factory_id=MAIN&order=asc&field=name",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients"
 									],
 									"query": [
@@ -3357,13 +3357,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients",
+									"raw": "{{url}}/api/actions/patients",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients"
 									]
 								}
@@ -3387,13 +3387,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients/bulk",
+									"raw": "{{url}}/api/actions/patients/bulk",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients",
 										"bulk"
 									]
@@ -3416,13 +3416,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients/MAIN-c21c7a12-05a3-44f3-880d-837a17f335c1",
+									"raw": "{{url}}/api/actions/patients/MAIN-c21c7a12-05a3-44f3-880d-837a17f335c1",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients",
 										"MAIN-c21c7a12-05a3-44f3-880d-837a17f335c1"
 									]
@@ -3436,13 +3436,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/patients/MAIN-gl1G7AscZ7RHQPx6jmhS",
+									"raw": "{{url}}/api/actions/patients/MAIN-gl1G7AscZ7RHQPx6jmhS",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"patients",
 										"MAIN-gl1G7AscZ7RHQPx6jmhS"
 									]
@@ -3461,13 +3461,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/regions",
+									"raw": "{{url}}/api/actions/regions",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"regions"
 									],
 									"query": [
@@ -3518,13 +3518,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/regions/MAIN-234897423",
+									"raw": "{{url}}/api/actions/regions/MAIN-234897423",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"regions",
 										"MAIN-234897423"
 									]
@@ -3538,13 +3538,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/regions?nested=true&lang=EN",
+									"raw": "{{url}}/api/actions/regions?nested=true&lang=EN",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"regions"
 									],
 									"query": [
@@ -3569,13 +3569,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/regions/labels/?type=union&division=Barisal Division&district=Barisal District&upazila=Bakerganj Upazila",
+									"raw": "{{url}}/api/actions/regions/labels/?type=union&division=Barisal Division&district=Barisal District&upazila=Bakerganj Upazila",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"regions",
 										"labels",
 										""
@@ -3612,13 +3612,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/regions?division=Barisal Division&district=Barguna District&upazila=Amtali Upazila&municipality=Amtali",
+									"raw": "{{url}}/api/actions/regions?division=Barisal Division&district=Barguna District&upazila=Amtali Upazila&municipality=Amtali",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"regions"
 									],
 									"query": [
@@ -3659,13 +3659,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/status",
+									"raw": "{{url}}/api/actions/status",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"status"
 									]
 								}
@@ -3683,13 +3683,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees",
+									"raw": "{{url}}/api/actions/trees",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees"
 									],
 									"query": [
@@ -3722,13 +3722,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/MAIN-VD2SJin8tEuwQjwogaOB",
+									"raw": "{{url}}/api/actions/trees/MAIN-VD2SJin8tEuwQjwogaOB",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										"MAIN-VD2SJin8tEuwQjwogaOB"
 									],
@@ -3767,13 +3767,13 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/?send=false",
+									"raw": "{{url}}/api/actions/trees/?send=false",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										""
 									],
@@ -3794,13 +3794,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/clone/MAIN-742d2dd1-0b8a-4f36-a775-5cb64822fe67",
+									"raw": "{{url}}/api/actions/trees/clone/MAIN-742d2dd1-0b8a-4f36-a775-5cb64822fe67",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										"clone",
 										"MAIN-742d2dd1-0b8a-4f36-a775-5cb64822fe67"
@@ -3815,13 +3815,13 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/save/MAIN-3486587423",
+									"raw": "{{url}}/api/actions/trees/save/MAIN-3486587423",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										"save",
 										"MAIN-3486587423"
@@ -3845,13 +3845,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/MAIN-34754835",
+									"raw": "{{url}}/api/actions/trees/MAIN-34754835",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										"MAIN-34754835"
 									]
@@ -3865,13 +3865,13 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/api/evaluations/trees/MAIN-48fd6b13-aa42-43be-8778-b79c1c2debcf_V2",
+									"raw": "{{url}}/api/actions/trees/MAIN-48fd6b13-aa42-43be-8778-b79c1c2debcf_V2",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
-										"evaluations",
+										"actions",
 										"trees",
 										"MAIN-48fd6b13-aa42-43be-8778-b79c1c2debcf_V2"
 									],
