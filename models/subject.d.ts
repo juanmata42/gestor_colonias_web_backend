@@ -23,16 +23,16 @@ export type SubjectType = {
 
 export type Subject = {
   id: string;
-  uniqueIdentifier: string;
+  unique_identifier: string;
   name: string;
   description: string;
   groups: string[];
-  assignedUsers: string[];
+  assigned_users: string[];
   locations: string[];
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  image_id: string;
+  image_id?: string;
   type: SubjectType;
   tags: Tag[];
 }

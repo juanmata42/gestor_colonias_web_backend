@@ -4,7 +4,7 @@ export type App = {
   id: string;
   active: boolean;
   color: string;
-  image_id: string;
+  image_id?: string;
   created_at: Date;
   updated_at?: Date;
   parent_apps?: string[];

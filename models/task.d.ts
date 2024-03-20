@@ -1,3 +1,5 @@
+import { TimeRecord } from './timeRecord';
+
 export type Task = {
   id: string;
   name: string;
@@ -16,4 +18,18 @@ export type i18nTask = {
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
+}
+export type TaskRecord = {
+  id: string;
+  task_id: string;
+  users: string[];
+  date: Date;
+  result: string;
+  comments: string;
+  created_at: Date;
+  updated_at?: Date;
+  deleted: boolean;
+  time_record: TimeRecord;
+  tags: string[];
+  locations?: string[];
 }

@@ -1,6 +1,7 @@
 import { Tag } from './tag';
+import { TimeRecord } from './timeRecord';
 
-export type i18nActionType = {
+export type i18nAction = {
   id: string;
   action_type_id: string;
   language: string;
@@ -11,27 +12,28 @@ export type i18nActionType = {
   deleted: boolean;
 }
 
-export type ActionType = {
+export type Action = {
   id: string;
   name: string;
-  i18n: i18nActionType[];
+  i18n: i18nAction[];
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
   tags: Tag[];
 }
 
-export type Action = {
+export type ActionRecord = {
   id: string;
-  subject_id?: string;
-  user_id: string;
+  action_id: string;
+  users: string[];
+  subjects?: string[];
   date: Date;
   result: string;
   comments: string;
+  locations?: string[];
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  type: ActionType;
-  location?: string;
+  time_record: TimeRecord;
   tags: Tag[];
 }

@@ -35,7 +35,7 @@ export type Group = {
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  image_id: string;
+  image_id?: string;
   type: GroupType;
   tags: Tag[];
   allowed_roles: string[];

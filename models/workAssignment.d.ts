@@ -1,4 +1,3 @@
-import { TimeRecord } from './timeRecord';
 import { Task } from './task';
 import { Tag } from './tag';
 export type WorkAssignment = {
@@ -12,5 +11,6 @@ export type WorkAssignment = {
   updated_at?: Date;
   deleted: boolean;
   tags: Tag[];
-  timeRecords: TimeRecord[];
+  task_records: string[];
+  action_records: string[];
 }

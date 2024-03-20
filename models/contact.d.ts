@@ -7,7 +7,7 @@ export type Contact = {
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  image_id: string;
+  image_id?: string;
   tags: Tag[];
   user_id?: string;
 }

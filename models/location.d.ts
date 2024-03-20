@@ -7,7 +7,7 @@ export type Location = {
   created_at: Date;
   updated_at?: Date;
   deleted: boolean;
-  image_id: string;
+  image_id?: string;
   type: string;
   coordinates: {
     latitude: number;
