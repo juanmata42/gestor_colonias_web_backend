@@ -23,4 +23,7 @@ export type User = {
   updated_at?: Date;
   roles: string[];
   tags: Tag[];
+  work_assignments: string[];
+  task_records: string[];
+  action_records: string[];
 }

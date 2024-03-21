@@ -1,6 +1,4 @@
 import { Tag } from './tag';
-import { Task } from './task';
-import { WorkAssignment } from './workAssignment';
 
 export type i18nGroupType = {
   id: string;
@@ -39,8 +37,10 @@ export type Group = {
   type: GroupType;
   tags: Tag[];
   allowed_roles: string[];
-  allowed_tasks: Task[];
-  work_assignments: WorkAssignment[];
+  allowed_tasks: string[];
+  work_assignments: string[];
+  task_records: string[];
+  action_records: string[];
   parent_groups: string[];
   children_groups: string[];
 }

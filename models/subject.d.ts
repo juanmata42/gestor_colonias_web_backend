@@ -35,4 +35,7 @@ export type Subject = {
   image_id?: string;
   type: SubjectType;
   tags: Tag[];
+  work_assignments: string[];
+  task_records: string[];
+  action_records: string[];
 }

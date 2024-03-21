@@ -1,20 +1,256 @@
--- Tag Table
-CREATE TABLE IF NOT EXISTS tags (
-  id SERIAL PRIMARY KEY,
+-- Tag
+CREATE TABLE tags (
+  id UUID PRIMARY KEY,
   name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
--- Users Table
-CREATE TABLE IF NOT EXISTS users (
-  id SERIAL PRIMARY KEY,
+-- i18nAction
+CREATE TABLE i18n_actions (
+  id UUID PRIMARY KEY,
+  action_type_id UUID NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Action
+CREATE TABLE actions (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (i18n, tags) to be implemented separately
+);
+
+-- ActionRecord
+CREATE TABLE action_records (
+  id UUID PRIMARY KEY,
+  action_id UUID NOT NULL,
+  date TIMESTAMP NOT NULL,
+  result TEXT NOT NULL,
+  comments TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (users, subjects, locations, time_record, tags) to be implemented separately
+);
+
+-- i18nApp
+CREATE TABLE i18n_apps (
+  id UUID PRIMARY KEY,
+  app_id UUID NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  header_title TEXT NOT NULL,
+  short_header TEXT NOT NULL,
+  description TEXT NOT NULL
+);
+
+-- App
+CREATE TABLE apps (
+  id UUID PRIMARY KEY,
+  active BOOLEAN NOT NULL,
+  color TEXT NOT NULL,
+  image_id UUID,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  -- relationships (parent_apps, children_apps, i18n, tags) to be implemented separately
+);
+
+-- AppPermission
+CREATE TABLE app_permissions (
+  id UUID PRIMARY KEY,
+  app_id UUID NOT NULL,
+  level INTEGER NOT NULL
+);
+
+-- Contact
+CREATE TABLE contacts (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  telephone TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL,
+  image_id UUID,
+  user_id UUID
+  -- relationships (tags) to be implemented separately
+);
+
+-- i18nGroupType
+CREATE TABLE i18n_group_types (
+  id UUID PRIMARY KEY,
+  group_type_id UUID NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- GroupType
+CREATE TABLE group_types (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (tags, i18n) to be implemented separately
+);
+
+-- Group
+CREATE TABLE groups (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  password TEXT NOT NULL,
+  showLevel INTEGER NOT NULL,
+  address TEXT NOT NULL,
+  country TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL,
+  image_id UUID,
+  type UUID NOT NULL
+  -- relationships (locations, users, subjects, contacts, tags, allowed_roles, allowed_tasks, work_assignments, task_records, action_records, parent_groups, children_groups) to be implemented separately
+);
+
+-- Location
+CREATE TABLE locations (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL,
+  image_id UUID,
+  type TEXT NOT NULL,
+  latitude DOUBLE PRECISION NOT NULL,
+  longitude DOUBLE PRECISION NOT NULL,
+  address TEXT NOT NULL,
+  country TEXT NOT NULL
+  -- relationships (groups, tags) to be implemented separately
+);
+
+-- Role
+CREATE TABLE roles (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (i18n, tags, app_permissions) to be implemented separately
+);
+
+-- i18nRole
+CREATE TABLE i18n_roles (
+  id UUID PRIMARY KEY,
+  role_id UUID NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- i18nSubjectType
+CREATE TABLE i18n_subject_types (
+  id UUID PRIMARY KEY,
+  subject_type_id UUID NOT
+    NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- SubjectType
+CREATE TABLE subject_types (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (i18n, tags) to be implemented separately
+);
+
+-- Subject
+CREATE TABLE subjects (
+  id UUID PRIMARY KEY,
+  unique_identifier TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL,
+  image_id UUID,
+  type UUID NOT NULL
+  -- relationships (groups, assigned_users, locations, tags, work_assignments, task_records, action_records) to be implemented separately
+);
+
+-- i18nTask
+CREATE TABLE i18n_tasks (
+  id UUID PRIMARY KEY,
+  task_id UUID NOT NULL,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Task
+CREATE TABLE tasks (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (i18n, tags) to be implemented separately
+);
+
+-- TaskRecord
+CREATE TABLE task_records (
+  id UUID PRIMARY KEY,
+  task_id UUID NOT NULL,
+  date TIMESTAMP NOT NULL,
+  result TEXT NOT NULL,
+  comments TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (users, time_record, tags, locations) to be implemented separately
+);
+
+-- TimeRecord
+CREATE TABLE time_records (
+  id UUID PRIMARY KEY,
+  checkIn_time TIMESTAMP NOT NULL,
+  checkOut_time TIMESTAMP,
+  metadata JSONB, -- Assuming PostgreSQL for JSONB support, adjust for other DBs
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP
+);
+
+-- User
+CREATE TABLE users (
+  id UUID PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL,
   name TEXT NOT NULL,
-  lastname TEXT,
-  birthdate DATE,
+  lastname TEXT NOT NULL,
+  birthdate DATE NOT NULL,
   gender TEXT,
   nid TEXT,
   telephone TEXT,
@@ -24,225 +260,58 @@ CREATE TABLE IF NOT EXISTS users (
   education_field TEXT,
   job TEXT,
   su BOOLEAN NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP
+  -- relationships (locations, subjects, groups, roles, tags, work_assignments, task_records, action_records) to be implemented separately
 );
 
--- Location Table
-CREATE TABLE IF NOT EXISTS locations (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE,
-  image_id TEXT,
-  type TEXT,
-  coordinates JSONB,
-  address TEXT,
-  country TEXT
+-- WorkAssignment
+CREATE TABLE work_assignments (
+  id UUID PRIMARY KEY,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+  -- relationships (users, subjects, locations, groups, tasks, tags, task_records, action_records) to be implemented separately
 );
 
--- Subject Table
-CREATE TABLE IF NOT EXISTS subjects (
-  id SERIAL PRIMARY KEY,
-  uniqueIdentifier TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE,
-  image_id TEXT,
-  type_id INTEGER REFERENCES subject_types(id),
-  evaluator_id INTEGER REFERENCES users(id),
-  location_id INTEGER REFERENCES locations(id)
+-- i18n_actions to actions
+ALTER TABLE i18n_actions ADD CONSTRAINT fk_action_type_id FOREIGN KEY (action_type_id) REFERENCES actions (id) ON DELETE CASCADE;
+-- i18n_apps to apps
+ALTER TABLE i18n_apps ADD CONSTRAINT fk_app_id FOREIGN KEY (app_id) REFERENCES apps (id) ON DELETE CASCADE;
+-- app_permissions to apps
+ALTER TABLE app_permissions ADD CONSTRAINT fk_app_id FOREIGN KEY (app_id) REFERENCES apps (id) ON DELETE CASCADE;
+-- i18n_group_types to group_types:
+ALTER TABLE i18n_group_types ADD CONSTRAINT fk_group_type_id FOREIGN KEY (group_type_id) REFERENCES group_types (id) ON DELETE CASCADE;
+-- i18n_roles to roles:
+ALTER TABLE i18n_roles ADD CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE;
+-- i18n_subject_types to subject_types:
+ALTER TABLE i18n_subject_types ADD CONSTRAINT fk_subject_type_id FOREIGN KEY (subject_type_id) REFERENCES subject_types (id) ON DELETE CASCADE;
+-- i18n_tasks to tasks:
+ALTER TABLE i18n_tasks ADD CONSTRAINT fk_task_id FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE;
+
+-- Actions and Tags
+CREATE TABLE action_tags (
+  action_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (action_id, tag_id),
+  CONSTRAINT fk_action FOREIGN KEY (action_id) REFERENCES actions (id) ON DELETE CASCADE,
+  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 );
 
--- Subject Types Table
-CREATE TABLE IF NOT EXISTS subject_types (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
+-- Tasks and Tags
+CREATE TABLE task_tags (
+  task_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (task_id, tag_id),
+  CONSTRAINT fk_task FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE,
+  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 );
 
--- Action Table
-CREATE TABLE IF NOT EXISTS actions (
-  id SERIAL PRIMARY KEY,
-  subject_id INTEGER REFERENCES subjects(id),
-  user_id INTEGER REFERENCES users(id),
-  date DATE NOT NULL,
-  result TEXT,
-  comments TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE,
-  type_id INTEGER REFERENCES action_types(id),
-  location_id INTEGER REFERENCES locations(id)
-);
-
--- Action Types Table
-CREATE TABLE IF NOT EXISTS action_types (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- Group Table
-CREATE TABLE IF NOT EXISTS groups (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  password TEXT,
-  showLevel INTEGER,
-  address TEXT,
-  country TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE,
-  image_id TEXT,
-  type_id INTEGER REFERENCES group_types(id)
-);
-
--- Group Types Table
-CREATE TABLE IF NOT EXISTS group_types (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- Time Records Table
-CREATE TABLE IF NOT EXISTS time_records (
-  id SERIAL PRIMARY KEY,
-  checkInTime TIMESTAMPTZ NOT NULL,
-  checkOutTime TIMESTAMPTZ,
-  metadata JSONB,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
-);
-
--- Work Assignments Table
-CREATE TABLE IF NOT EXISTS work_assignments (
-  id SERIAL PRIMARY KEY,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- App Table
-CREATE TABLE IF NOT EXISTS apps (
-  id SERIAL PRIMARY KEY,
-  active BOOLEAN NOT NULL,
-  color TEXT,
-  image_id TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  parent_app_id INTEGER
-);
-
--- App Permissions Table
-CREATE TABLE IF NOT EXISTS app_permissions (
-  id SERIAL PRIMARY KEY,
-  app_id INTEGER REFERENCES apps(id),
-  user_id INTEGER REFERENCES users(id),
-  level INTEGER,
-  parent_app_id INTEGER,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ
-);
-
--- Role Table
-CREATE TABLE IF NOT EXISTS roles (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- Task Table
-CREATE TABLE IF NOT EXISTS tasks (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nApp Table
-CREATE TABLE IF NOT EXISTS i18n_apps (
-  id SERIAL PRIMARY KEY,
-  app_id INTEGER REFERENCES apps(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  header_title TEXT,
-  short_header TEXT,
-  tool_name TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nRole Table
-CREATE TABLE IF NOT EXISTS i18n_roles (
-  id SERIAL PRIMARY KEY,
-  role_id INTEGER REFERENCES roles(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nTask Table
-CREATE TABLE IF NOT EXISTS i18n_tasks (
-  id SERIAL PRIMARY KEY,
-  task_id INTEGER REFERENCES tasks(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nGroupType Table
-CREATE TABLE IF NOT EXISTS i18n_group_types (
-  id SERIAL PRIMARY KEY,
-  group_type_id INTEGER REFERENCES group_types(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nActionType Table
-CREATE TABLE IF NOT EXISTS i18n_action_types (
-  id SERIAL PRIMARY KEY,
-  action_type_id INTEGER REFERENCES action_types(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
-);
-
--- i18nSubjectType Table
-CREATE TABLE IF NOT EXISTS i18n_subject_types (
-  id SERIAL PRIMARY KEY,
-  subject_type_id INTEGER REFERENCES subject_types(id),
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT,
-  created_at TIMESTAMPTZ NOT NULL,
-  updated_at TIMESTAMPTZ,
-  deleted BOOLEAN DEFAULT FALSE
+-- Users and Tags
+CREATE TABLE user_tags (
+  user_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (user_id, tag_id),
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
 );
