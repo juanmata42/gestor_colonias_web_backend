@@ -1,3 +1,101 @@
+
+-- Country
+CREATE TABLE countries (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  code TEXT NOT NULL UNIQUE,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- i18nCountry
+CREATE TABLE i18n_countries (
+  id UUID PRIMARY KEY,
+  country_id UUID NOT NULL REFERENCES countries(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Education Level Tables
+CREATE TABLE education_levels (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE i18n_education_levels (
+  id UUID PRIMARY KEY,
+  education_level_id UUID NOT NULL REFERENCES education_levels(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Education Field Tables
+CREATE TABLE education_fields (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE i18n_education_fields (
+  id UUID PRIMARY KEY,
+  education_field_id UUID NOT NULL REFERENCES education_fields(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Job Tables
+CREATE TABLE jobs (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE i18n_jobs (
+  id UUID PRIMARY KEY,
+  job_id UUID NOT NULL REFERENCES jobs(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+-- Gender Tables
+CREATE TABLE genders (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE i18n_genders (
+  id UUID PRIMARY KEY,
+  gender_id UUID NOT NULL REFERENCES genders(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  language TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
 -- Tag
 CREATE TABLE tags (
   id UUID PRIMARY KEY,
@@ -35,6 +133,7 @@ CREATE TABLE action_records (
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
+  time_record UUID NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
@@ -111,7 +210,8 @@ CREATE TABLE groups (
   password TEXT NOT NULL,
   showLevel INTEGER NOT NULL,
   address TEXT NOT NULL,
-  country TEXT NOT NULL,
+  -- countries array of ids
+  countries UUID[] NOT NULL REFERENCES countries(id),
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
@@ -154,7 +254,7 @@ CREATE TABLE locations (
   latitude DOUBLE PRECISION NOT NULL,
   longitude DOUBLE PRECISION NOT NULL,
   address TEXT NOT NULL,
-  country TEXT NOT NULL
+  country UUID NOT NULL
   -- Tags relationship to be implemented in a junction table
 );
 
@@ -244,6 +344,7 @@ CREATE TABLE task_records (
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
+  time_record UUID NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
@@ -268,19 +369,24 @@ CREATE TABLE users (
   name TEXT NOT NULL,
   lastname TEXT NOT NULL,
   birthdate DATE NOT NULL,
-  gender TEXT,
+  gender UUID NOT NULL,
   nid TEXT,
   telephone TEXT,
   address TEXT,
-  country TEXT,
-  education_level TEXT,
-  education_field TEXT,
-  job TEXT,
+  country UUID,
+  education_level UUID,
+  education_field UUID,
+  job UUID,
   su BOOLEAN NOT NULL,
   created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP
-  -- relationships with locations, subjects, groups, roles, tags, work_assignments, task_records, action_records to be implemented separately
+  updated_at TIMESTAMP,
+  CONSTRAINT fk_user_gender FOREIGN KEY (gender) REFERENCES genders(id),
+  CONSTRAINT fk_user_country FOREIGN KEY (country) REFERENCES countries(id),
+  CONSTRAINT fk_user_education_level FOREIGN KEY (education_level) REFERENCES education_levels(id),
+  CONSTRAINT fk_user_education_field FOREIGN KEY (education_field) REFERENCES education_fields(id),
+  CONSTRAINT fk_user_job FOREIGN KEY (job) REFERENCES jobs(id)
 );
+
 
 -- WorkAssignment
 CREATE TABLE work_assignments (
@@ -430,14 +536,163 @@ CREATE TABLE work_assignment_tags (
   CONSTRAINT fk_work_assignment_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
 
--- Additional considerations for extending tagging to other entities:
--- Ensure each entity that can be tagged has a corresponding junction table.
--- For new entities that require tagging, follow the pattern established in these junction table definitions.
--- Consider indexing the columns used in joins and searches to improve performance as your dataset grows.
+-- Subjects -----
 
--- Example index creation for a frequently joined column in a junction table:
--- CREATE INDEX ON group_tags(group_id);
--- CREATE INDEX ON group_tags(tag_id);
--- Adjust the indexing strategy based on query patterns and performance testing.
+-- Junction Table for subjects and groups
+CREATE TABLE subject_groups (
+  subject_id UUID NOT NULL,
+  group_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, group_id),
+  CONSTRAINT fk_subject_groups_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_groups_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE
+);
 
+-- Junction Table for subjects and users
+CREATE TABLE subject_users (
+  subject_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, user_id),
+  CONSTRAINT fk_subject_users_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_users_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
 
+-- Junction Table for subjects and locations
+CREATE TABLE subject_locations (
+  subject_id UUID NOT NULL,
+  location_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, location_id),
+  CONSTRAINT fk_subject_locations_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_locations_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
+);
+
+-- Junction Table for subjects and work assignments
+CREATE TABLE subject_work_assignments (
+  subject_id UUID NOT NULL,
+  work_assignment_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, work_assignment_id),
+  CONSTRAINT fk_subject_work_assignments_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_work_assignments_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE
+);
+
+-- Junction Table for subjects and task records
+CREATE TABLE subject_task_records (
+  subject_id UUID NOT NULL,
+  task_record_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, task_record_id),
+  CONSTRAINT fk_subject_task_records_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_task_records_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE
+);
+
+-- Junction Table for subjects and action records
+CREATE TABLE subject_action_records (
+  subject_id UUID NOT NULL,
+  action_record_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, action_record_id),
+  CONSTRAINT fk_subject_action_records_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_action_records_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE
+);
+
+-- Groups -------
+
+-- Junction Table for Locations and groups
+CREATE TABLE location_groups (
+  location_id UUID NOT NULL,
+  group_id UUID NOT NULL,
+  PRIMARY KEY (location_id, group_id),
+  CONSTRAINT fk_location_groups_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE,
+  CONSTRAINT fk_location_groups_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group Users Roles
+CREATE TABLE group_users_roles (
+  group_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  role_id UUID NOT NULL,
+  PRIMARY KEY (group_id, user_id, role_id),
+  CONSTRAINT fk_group_users_roles_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_users_roles_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_users_roles_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group Contacts
+CREATE TABLE group_contacts (
+  group_id UUID NOT NULL,
+  contact_id UUID NOT NULL,
+  PRIMARY KEY (group_id, contact_id),
+  CONSTRAINT fk_group_contacts_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_contacts_contact FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group allowed tasks
+CREATE TABLE group_tasks (
+  group_id UUID NOT NULL,
+  task_id UUID NOT NULL,
+  PRIMARY KEY (group_id, task_id),
+  CONSTRAINT fk_group_tasks_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_tasks_task FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group allowed roles
+CREATE TABLE group_roles (
+  group_id UUID NOT NULL,
+  role_id UUID NOT NULL,
+  PRIMARY KEY (group_id, role_id),
+  CONSTRAINT fk_group_roles_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_roles_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group work assignments
+CREATE TABLE group_work_assignments (
+  group_id UUID NOT NULL,
+  work_assignment_id UUID NOT NULL,
+  PRIMARY KEY (group_id, work_assignment_id),
+  CONSTRAINT fk_group_work_assignments_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_work_assignments_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group task records
+CREATE TABLE group_task_records (
+  group_id UUID NOT NULL,
+  task_record_id UUID NOT NULL,
+  PRIMARY KEY (group_id, task_record_id),
+  CONSTRAINT fk_group_task_records_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_task_records_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group action records
+CREATE TABLE group_action_records (
+  group_id UUID NOT NULL,
+  action_record_id UUID NOT NULL,
+  PRIMARY KEY (group_id, action_record_id),
+  CONSTRAINT fk_group_action_records_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_action_records_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group and parent groups
+CREATE TABLE group_parents (
+  group_id UUID NOT NULL,
+  parent_group_id UUID NOT NULL,
+  PRIMARY KEY (group_id, parent_group_id),
+  CONSTRAINT fk_group_parents_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_parents_parent_group FOREIGN KEY (parent_group_id) REFERENCES groups(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Group and child groups
+CREATE TABLE group_children (
+  group_id UUID NOT NULL,
+  child_group_id UUID NOT NULL,
+  PRIMARY KEY (group_id, child_group_id),
+  CONSTRAINT fk_group_children_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_children_child_group FOREIGN KEY (child_group_id) REFERENCES groups(id) ON DELETE CASCADE
+);
+
+-- Other relationships junction tables -------
+
+-- Junction Table for App permissions and Roles (roles can have multiple app permissions)
+CREATE TABLE role_app_permissions (
+  role_id UUID NOT NULL,
+  app_permission_id UUID NOT NULL,
+  PRIMARY KEY (role_id, app_permission_id),
+  CONSTRAINT fk_role_app_permissions_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+  CONSTRAINT fk_role_app_permissions_app_permission FOREIGN KEY (app_permission_id) REFERENCES app_permissions(id) ON DELETE CASCADE
+);

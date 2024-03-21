@@ -35,7 +35,22 @@ export type Location = {
     longitude: number;
   };
   address: string;
-  country: string;
+  country: Country;
   tags: Tag[];
 }
-    
+
+export type Country = {
+  id: string;
+  name: string;
+  created_at: Date;
+  updated_at?: Date;
+  deleted: boolean;
+  i18n: i18nCountry[];
+}
+
+export type i18nCountry = {
+  id: string;
+  country_id: string;
+  language: string;
+  name: string;
+}
