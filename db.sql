@@ -7,19 +7,6 @@ CREATE TABLE tags (
   deleted BOOLEAN NOT NULL
 );
 
--- i18nAction
-CREATE TABLE i18n_actions (
-  id UUID PRIMARY KEY,
-  action_id UUID NOT NULL,
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  deleted BOOLEAN NOT NULL,
-  CONSTRAINT fk_action_id FOREIGN KEY (action_id) REFERENCES actions (id) ON DELETE CASCADE
-);
-
 -- Action
 CREATE TABLE actions (
   id UUID PRIMARY KEY,
@@ -27,20 +14,30 @@ CREATE TABLE actions (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (i18n, tags) to be implemented separately
+);
+
+-- i18nAction
+CREATE TABLE i18n_actions (
+  id UUID PRIMARY KEY,
+  action_id UUID NOT NULL REFERENCES actions(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- ActionRecord
 CREATE TABLE action_records (
   id UUID PRIMARY KEY,
-  action_id UUID NOT NULL,
+  action_id UUID NOT NULL REFERENCES actions(id) ON DELETE CASCADE,
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (users, subjects, locations, time_record, tags) to be implemented separately
 );
 
 -- i18nApp
@@ -51,7 +48,8 @@ CREATE TABLE i18n_apps (
   name TEXT NOT NULL,
   header_title TEXT NOT NULL,
   short_header TEXT NOT NULL,
-  description TEXT NOT NULL
+  description TEXT NOT NULL,
+  CONSTRAINT fk_app_id FOREIGN KEY (app_id) REFERENCES apps(id) ON DELETE CASCADE
 );
 
 -- App
@@ -61,14 +59,13 @@ CREATE TABLE apps (
   color TEXT NOT NULL,
   image_id UUID,
   created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  -- relationships (parent_apps, children_apps, i18n, tags) to be implemented separately
+  updated_at TIMESTAMP
 );
 
 -- AppPermission
 CREATE TABLE app_permissions (
   id UUID PRIMARY KEY,
-  app_id UUID NOT NULL,
+  app_id UUID NOT NULL REFERENCES apps(id) ON DELETE CASCADE,
   level INTEGER NOT NULL
 );
 
@@ -83,22 +80,7 @@ CREATE TABLE contacts (
   deleted BOOLEAN NOT NULL,
   image_id UUID,
   user_id UUID
-  -- relationships (tags) to be implemented separately
 );
-
--- i18nGroupType
-CREATE TABLE i18n_group_types (
-  id UUID PRIMARY KEY,
-  group_type_id UUID NOT NULL,
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  deleted BOOLEAN NOT NULL,
-  CONSTRAINT fk_group_type_id FOREIGN KEY (group_type_id) REFERENCES group_types (id) ON DELETE CASCADE
-);
-
 
 -- GroupType
 CREATE TABLE group_types (
@@ -107,7 +89,19 @@ CREATE TABLE group_types (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (tags, i18n) to be implemented separately
+  -- Tags relationship implemented in a junction table below
+);
+
+-- i18nGroupType
+CREATE TABLE i18n_group_types (
+  id UUID PRIMARY KEY,
+  group_type_id UUID NOT NULL REFERENCES group_types(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- Group
@@ -122,42 +116,8 @@ CREATE TABLE groups (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  type UUID NOT NULL
-  -- relationships (locations, users, subjects, contacts, tags, allowed_roles, allowed_tasks, work_assignments, task_records, action_records, parent_groups, children_groups) to be implemented separately
-);
-
--- Group_user_roles
-CREATE TABLE group_users_roles (
-  group_id UUID NOT NULL,
-  user_id UUID NOT NULL,
-  role_id UUID NOT NULL,
-  CONSTRAINT pk_group_users_roles PRIMARY KEY (group_id, user_id, role_id),
-  CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups (id) ON DELETE CASCADE,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-  CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE
-);
-
--- Group locations
-CREATE TABLE group_locations (
-  group_id UUID NOT NULL,
-  location_id UUID NOT NULL,
-  PRIMARY KEY (group_id, location_id),
-  CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups (id) ON DELETE CASCADE,
-  CONSTRAINT fk_location FOREIGN KEY (location_id) REFERENCES locations (id) ON DELETE CASCADE
-);
-
-
--- i18nLocationType
-CREATE TABLE i18n_location_types (
-  id UUID PRIMARY KEY,
-  location_type_id UUID NOT NULL,
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  deleted BOOLEAN NOT NULL,
-  CONSTRAINT fk_location_type_id FOREIGN KEY (location_type_id) REFERENCES location_types (id) ON DELETE CASCADE
+  type UUID NOT NULL REFERENCES group_types(id) ON DELETE SET NULL
+  -- Additional relationships (locations, users, etc.) to be implemented separately
 );
 
 -- LocationType
@@ -167,7 +127,19 @@ CREATE TABLE location_types (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- Tags relationship to be implemented separately
+  -- Tags relationship to be implemented in a junction table
+);
+
+-- i18nLocationType
+CREATE TABLE i18n_location_types (
+  id UUID PRIMARY KEY,
+  location_type_id UUID NOT NULL REFERENCES location_types(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- Location
@@ -178,15 +150,13 @@ CREATE TABLE locations (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  type UUID NOT NULL,
+  type UUID NOT NULL REFERENCES location_types(id) ON DELETE SET NULL,
   latitude DOUBLE PRECISION NOT NULL,
   longitude DOUBLE PRECISION NOT NULL,
   address TEXT NOT NULL,
-  country TEXT NOT NULL,
-  CONSTRAINT fk_type FOREIGN KEY (type) REFERENCES location_types (id) ON DELETE SET NULL
-  -- relationships (groups, tags) to be implemented separately
+  country TEXT NOT NULL
+  -- Tags relationship to be implemented in a junction table
 );
-
 
 -- Role
 CREATE TABLE roles (
@@ -195,26 +165,13 @@ CREATE TABLE roles (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (i18n, tags, app_permissions) to be implemented separately
+  -- relationships with i18nRoles and app_permissions to be implemented separately
 );
 
 -- i18nRole
 CREATE TABLE i18n_roles (
   id UUID PRIMARY KEY,
-  role_id UUID NOT NULL,
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  deleted BOOLEAN NOT NULL
-);
-
--- i18nSubjectType
-CREATE TABLE i18n_subject_types (
-  id UUID PRIMARY KEY,
-  subject_type_id UUID NOT
-    NOT NULL,
+  role_id UUID NOT NULL REFERENCES roles(id) ON DELETE CASCADE,
   language TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT NOT NULL,
@@ -230,7 +187,18 @@ CREATE TABLE subject_types (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (i18n, tags) to be implemented separately
+);
+
+-- i18nSubjectType
+CREATE TABLE i18n_subject_types (
+  id UUID PRIMARY KEY,
+  subject_type_id UUID NOT NULL REFERENCES subject_types(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- Subject
@@ -239,24 +207,12 @@ CREATE TABLE subjects (
   unique_identifier TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT,
+  type UUID NOT NULL REFERENCES subject_types(id),
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
-  image_id UUID,
-  type UUID NOT NULL
-  -- relationships (groups, assigned_users, locations, tags, work_assignments, task_records, action_records) to be implemented separately
-);
-
--- i18nTask
-CREATE TABLE i18n_tasks (
-  id UUID PRIMARY KEY,
-  task_id UUID NOT NULL,
-  language TEXT NOT NULL,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP,
-  deleted BOOLEAN NOT NULL
+  image_id UUID
+  -- relationships to groups, tags, etc., to be implemented separately
 );
 
 -- Task
@@ -266,20 +222,32 @@ CREATE TABLE tasks (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (i18n, tags) to be implemented separately
+  -- i18n and tags relationships to be implemented separately
+);
+
+-- i18nTask
+CREATE TABLE i18n_tasks (
+  id UUID PRIMARY KEY,
+  task_id UUID NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- TaskRecord
 CREATE TABLE task_records (
   id UUID PRIMARY KEY,
-  task_id UUID NOT NULL,
+  task_id UUID NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (users, time_record, tags, locations) to be implemented separately
+  -- time_record, locations, and tags relationships to be implemented separately
 );
 
 -- TimeRecord
@@ -287,7 +255,7 @@ CREATE TABLE time_records (
   id UUID PRIMARY KEY,
   checkIn_time TIMESTAMP NOT NULL,
   checkOut_time TIMESTAMP,
-  metadata JSONB, -- Assuming PostgreSQL for JSONB support, adjust for other DBs
+  metadata JSONB, -- Use JSONB for storing JSON data, adjust for other DBs
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP
 );
@@ -311,7 +279,7 @@ CREATE TABLE users (
   su BOOLEAN NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP
-  -- relationships (locations, subjects, groups, roles, tags, work_assignments, task_records, action_records) to be implemented separately
+  -- relationships with locations, subjects, groups, roles, tags, work_assignments, task_records, action_records to be implemented separately
 );
 
 -- WorkAssignment
@@ -320,135 +288,156 @@ CREATE TABLE work_assignments (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
-  -- relationships (users, subjects, locations, groups, tasks, tags, task_records, action_records) to be implemented separately
+  -- relationships with users, subjects, locations, groups, tasks, tags, task_records, action_records to be implemented separately
 );
 
--- i18n_actions to actions
-ALTER TABLE i18n_actions ADD CONSTRAINT fk_action_type_id FOREIGN KEY (action_type_id) REFERENCES actions (id) ON DELETE CASCADE;
--- i18n_apps to apps
-ALTER TABLE i18n_apps ADD CONSTRAINT fk_app_id FOREIGN KEY (app_id) REFERENCES apps (id) ON DELETE CASCADE;
--- app_permissions to apps
-ALTER TABLE app_permissions ADD CONSTRAINT fk_app_id FOREIGN KEY (app_id) REFERENCES apps (id) ON DELETE CASCADE;
--- i18n_group_types to group_types:
-ALTER TABLE i18n_group_types ADD CONSTRAINT fk_group_type_id FOREIGN KEY (group_type_id) REFERENCES group_types (id) ON DELETE CASCADE;
--- i18n_roles to roles:
-ALTER TABLE i18n_roles ADD CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE;
--- i18n_subject_types to subject_types:
-ALTER TABLE i18n_subject_types ADD CONSTRAINT fk_subject_type_id FOREIGN KEY (subject_type_id) REFERENCES subject_types (id) ON DELETE CASCADE;
--- i18n_tasks to tasks:
-ALTER TABLE i18n_tasks ADD CONSTRAINT fk_task_id FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE;
--- i18nLocationType to LocationType
-ALTER TABLE i18n_location_types ADD CONSTRAINT fk_location_type_id FOREIGN KEY (location_type_id) REFERENCES location_types (id) ON DELETE CASCADE;
--- locations to location_types
-ALTER TABLE locations ADD CONSTRAINT fk_type FOREIGN KEY (type) REFERENCES location_types (id) ON DELETE SET NULL;
--- action_records to actions:
-ALTER TABLE action_records ADD CONSTRAINT fk_action_id FOREIGN KEY (action_id) REFERENCES actions (id) ON DELETE CASCADE;
--- task_records to tasks:
-ALTER TABLE task_records ADD CONSTRAINT fk_task_id FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE;
+-- Junction Tables:
 
--- Actions and Tags
-CREATE TABLE action_tags (
-  action_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (action_id, tag_id),
-  CONSTRAINT fk_action FOREIGN KEY (action_id) REFERENCES actions (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
+-- Tags ------
 
--- Tasks and Tags
-CREATE TABLE task_tags (
-  task_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (task_id, tag_id),
-  CONSTRAINT fk_task FOREIGN KEY (task_id) REFERENCES tasks (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
--- Users and Tags
-CREATE TABLE user_tags (
-  user_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (user_id, tag_id),
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
--- Locations and Tags
-CREATE TABLE location_tags (
-  location_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (location_id, tag_id),
-  CONSTRAINT fk_location FOREIGN KEY (location_id) REFERENCES locations (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
---Location type and Tags
-CREATE TABLE location_type_tags (
-  location_type_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (location_type_id, tag_id),
-  CONSTRAINT fk_location_type FOREIGN KEY (location_type_id) REFERENCES location_types (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
--- Subjects and Tags
-CREATE TABLE subject_tags (
-  subject_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (subject_id, tag_id),
-  CONSTRAINT fk_subject FOREIGN KEY (subject_id) REFERENCES subjects (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
--- Groups and Tags
+-- Junction Table for Group Tags
 CREATE TABLE group_tags (
   group_id UUID NOT NULL,
   tag_id UUID NOT NULL,
   PRIMARY KEY (group_id, tag_id),
-  CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
+  CONSTRAINT fk_group_tags_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
 
--- Group type and tags
+-- Junction Table for GroupType Tags
 CREATE TABLE group_type_tags (
   group_type_id UUID NOT NULL,
   tag_id UUID NOT NULL,
   PRIMARY KEY (group_type_id, tag_id),
-  CONSTRAINT fk_group_type FOREIGN KEY (group_type_id) REFERENCES group_types (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
+  CONSTRAINT fk_group_type_tags_group_type FOREIGN KEY (group_type_id) REFERENCES group_types(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_type_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
 
-
--- Roles and Tags
-CREATE TABLE role_tags (
-  role_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (role_id, tag_id),
-  CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
-
--- WorkAssignments and Tags
-CREATE TABLE work_assignment_tags (
-  work_assignment_id UUID NOT NULL,
-  tag_id UUID NOT NULL,
-  PRIMARY KEY (work_assignment_id, tag_id),
-  CONSTRAINT fk_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
-);
--- Location and Group
-CREATE TABLE location_groups (
-  location_id UUID NOT NULL,
-  group_id UUID NOT NULL,
-  PRIMARY KEY (location_id, group_id),
-  CONSTRAINT fk_location FOREIGN KEY (location_id) REFERENCES locations (id) ON DELETE CASCADE,
-  CONSTRAINT fk_group FOREIGN KEY (group_id) REFERENCES groups (id) ON DELETE CASCADE
-);
--- Location and Tag
+-- Junction Table for Location Tags
 CREATE TABLE location_tags (
   location_id UUID NOT NULL,
   tag_id UUID NOT NULL,
   PRIMARY KEY (location_id, tag_id),
-  CONSTRAINT fk_location FOREIGN KEY (location_id) REFERENCES locations (id) ON DELETE CASCADE,
-  CONSTRAINT fk_tag FOREIGN KEY (tag_id) REFERENCES tags (id) ON DELETE CASCADE
+  CONSTRAINT fk_location_tags_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE,
+  CONSTRAINT fk_location_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
 );
+
+-- Junction Table for Location Type Tags
+CREATE TABLE location_type_tags (
+  location_type_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (location_type_id, tag_id),
+  CONSTRAINT fk_location_type_tags_location_type FOREIGN KEY (location_type_id) REFERENCES location_types(id) ON DELETE CASCADE,
+  CONSTRAINT fk_location_type_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Subject Tags
+CREATE TABLE subject_tags (
+  subject_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, tag_id),
+  CONSTRAINT fk_subject_tags_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for SubjectType Tags
+CREATE TABLE subject_type_tags (
+  subject_type_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (subject_type_id, tag_id),
+  CONSTRAINT fk_subject_type_tags_subject_type FOREIGN KEY (subject_type_id) REFERENCES subject_types(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_type_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Task Tags
+CREATE TABLE task_tags (
+  task_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (task_id, tag_id),
+  CONSTRAINT fk_task_tags_task FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE,
+  CONSTRAINT fk_task_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for TaskRecord Tags
+CREATE TABLE task_record_tags (
+  task_record_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (task_record_id, tag_id),
+  CONSTRAINT fk_task_record_tags_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE,
+  CONSTRAINT fk_task_record_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for User Tags
+CREATE TABLE user_tags (
+  user_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (user_id, tag_id),
+  CONSTRAINT fk_user_tags_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_user_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Action Tags
+CREATE TABLE action_tags (
+  action_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (action_id, tag_id),
+  CONSTRAINT fk_action_tags_action FOREIGN KEY (action_id) REFERENCES actions(id) ON DELETE CASCADE,
+  CONSTRAINT fk_action_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Action Record Tags
+CREATE TABLE action_record_tags (
+  action_record_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (action_record_id, tag_id),
+  CONSTRAINT fk_action_record_tags_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE,
+  CONSTRAINT fk_action_record_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for App Tags
+CREATE TABLE app_tags (
+  app_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (app_id, tag_id),
+  CONSTRAINT fk_app_tags_app FOREIGN KEY (app_id) REFERENCES apps(id) ON DELETE CASCADE,
+  CONSTRAINT fk_app_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Contact Tags
+CREATE TABLE contact_tags (
+  contact_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (contact_id, tag_id),
+  CONSTRAINT fk_contact_tags_contact FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  CONSTRAINT fk_contact_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Role Tags
+CREATE TABLE role_tags (
+  role_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (role_id, tag_id),
+  CONSTRAINT fk_role_tags_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+  CONSTRAINT fk_role_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for WorkAssignment Tags
+CREATE TABLE work_assignment_tags (
+  work_assignment_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (work_assignment_id, tag_id),
+  CONSTRAINT fk_work_assignment_tags_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE,
+  CONSTRAINT fk_work_assignment_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Additional considerations for extending tagging to other entities:
+-- Ensure each entity that can be tagged has a corresponding junction table.
+-- For new entities that require tagging, follow the pattern established in these junction table definitions.
+-- Consider indexing the columns used in joins and searches to improve performance as your dataset grows.
+
+-- Example index creation for a frequently joined column in a junction table:
+-- CREATE INDEX ON group_tags(group_id);
+-- CREATE INDEX ON group_tags(tag_id);
+-- Adjust the indexing strategy based on query patterns and performance testing.
+
+
