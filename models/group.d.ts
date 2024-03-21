@@ -19,6 +19,10 @@ export type GroupType = {
   tags: Tag[];
   i18n: i18nGroupType[];
 }
+export type UsersWithRoles = {
+  user_id: string;
+  roles: string[];
+}
 export type Group = {
   id: string;
   name: string;
@@ -27,7 +31,7 @@ export type Group = {
   address: string;
   country: string;
   locations: string[];
-  users: string[];
+  usersWithRoles: UsersWithRoles[];
   subjects: string[];
   contacts: string[];
   created_at: Date;

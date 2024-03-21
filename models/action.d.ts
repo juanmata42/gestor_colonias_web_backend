@@ -3,7 +3,7 @@ import { TimeRecord } from './timeRecord';
 
 export type i18nAction = {
   id: string;
-  action_type_id: string;
+  action_id: string;
   language: string;
   name: string;
   description: string;

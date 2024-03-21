@@ -1,5 +1,9 @@
 import { Tag } from './tag';
 
+export type GroupsWithRoles = {
+  group_id: string;
+  roles: string[];
+}
 export type User = {
   id: string;
   email: string;
@@ -18,7 +22,7 @@ export type User = {
   su: boolean;
   locations: string[];
   subjects: string[];
-  groups: string[];
+  groupsWithRoles: GroupsWithRoles[];
   created_at: Date;
   updated_at?: Date;
   roles: string[];
