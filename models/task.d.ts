@@ -1,5 +1,5 @@
 import { TimeRecord } from './timeRecord';
-
+import { Tag } from './tag';
 export type Task = {
   id: string;
   name: string;
@@ -7,7 +7,7 @@ export type Task = {
   updated_at?: Date;
   deleted: boolean;
   i18n: i18nTask[];
-  tags: string[];
+  tags: Tag[];
 }
 export type i18nTask = {
   id: string;
@@ -30,6 +30,7 @@ export type TaskRecord = {
   updated_at?: Date;
   deleted: boolean;
   time_record: TimeRecord;
-  tags: string[];
+  tags: Tag[];
   locations?: string[];
+  occurrence_records?: string[];
 }

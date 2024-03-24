@@ -11,6 +11,7 @@ export type App = {
   children_apps: string[];
   i18n: i18nApp[];
   tags: Tag[];
+  levels: number[];
 };
 
 export type i18nApp = {

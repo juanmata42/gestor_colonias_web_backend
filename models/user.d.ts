@@ -96,15 +96,16 @@ export type User = {
   education_level: education_level;
   education_field: education_field;
   job: job;
+  annual_salary_in_euro: number;
   su: boolean;
   locations: string[];
   subjects: string[];
   groupsWithRoles: GroupsWithRoles[];
   created_at: Date;
   updated_at?: Date;
-  roles: string[];
   tags: Tag[];
   work_assignments: string[];
   task_records: string[];
   action_records: string[];
+  occurrence_records?: string[];
 }

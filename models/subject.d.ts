@@ -38,4 +38,5 @@ export type Subject = {
   work_assignments: string[];
   task_records: string[];
   action_records: string[];
+  occurrence_records?: string[];
 }

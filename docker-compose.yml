@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   pg:
-    image: postgres:14 # Using PostgreSQL 14 as it's the latest LTS as of my last update
+    image: postgis/postgis:14-3.1 # Use the appropriate PostGIS image
     container_name: pg
     restart: always
     environment:

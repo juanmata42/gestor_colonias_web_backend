@@ -27,7 +27,7 @@ export type Group = {
   id: string;
   name: string;
   password: string;
-  showLevel: number;
+  privacy_level: number;
   address: string;
   country: string;
   locations: string[];
@@ -47,4 +47,5 @@ export type Group = {
   action_records: string[];
   parent_groups: string[];
   children_groups: string[];
+  occurrence_records?: string[];
 }

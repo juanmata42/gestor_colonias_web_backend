@@ -42,7 +42,7 @@ DATABASE_URL=postgresql://postgres:postgres@pg:5432/postgres
 Replace the values as necessary for your configuration.
 
 Build and Run with Docker Compose
-
+PostGis will also be installed in the database container to enable spatial queries.
 From the root of your project directory, run the following command to build and start your application:
 
 bash

@@ -1,4 +1,3 @@
-
 -- Country
 CREATE TABLE countries (
   id UUID PRIMARY KEY,
@@ -129,11 +128,11 @@ CREATE TABLE i18n_actions (
 -- ActionRecord
 CREATE TABLE action_records (
   id UUID PRIMARY KEY,
-  action_id UUID NOT NULL REFERENCES actions(id) ON DELETE CASCADE,
+  action_id UUID NOT NULL REFERENCES actions(id) ON DELETE RESTRICT,
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
-  time_record UUID NOT NULL,
+  time_record UUID NOT NULL REFERENCES time_records(id) ON DELETE RESTRICT,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
@@ -157,6 +156,7 @@ CREATE TABLE apps (
   active BOOLEAN NOT NULL,
   color TEXT NOT NULL,
   image_id UUID,
+  levels INTEGER[],
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP
 );
@@ -178,7 +178,7 @@ CREATE TABLE contacts (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  user_id UUID
+  user_id UUID REFERENCES users(id) ON DELETE SET NULL
 );
 
 -- GroupType
@@ -208,15 +208,13 @@ CREATE TABLE groups (
   id UUID PRIMARY KEY,
   name TEXT NOT NULL,
   password TEXT NOT NULL,
-  showLevel INTEGER NOT NULL,
+  privacy_level INTEGER NOT NULL,
   address TEXT NOT NULL,
-  -- countries array of ids
-  countries UUID[] NOT NULL REFERENCES countries(id),
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  type UUID NOT NULL REFERENCES group_types(id) ON DELETE SET NULL
+  type UUID NOT NULL REFERENCES group_types(id) ON DELETE RESTRICT,
   -- Additional relationships (locations, users, etc.) to be implemented separately
 );
 
@@ -242,6 +240,9 @@ CREATE TABLE i18n_location_types (
   deleted BOOLEAN NOT NULL
 );
 
+-- Install postgis extension
+CREATE EXTENSION postgis;
+
 -- Location
 CREATE TABLE locations (
   id UUID PRIMARY KEY,
@@ -250,9 +251,9 @@ CREATE TABLE locations (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  type UUID NOT NULL REFERENCES location_types(id) ON DELETE SET NULL,
-  latitude DOUBLE PRECISION NOT NULL,
-  longitude DOUBLE PRECISION NOT NULL,
+  type UUID NOT NULL REFERENCES location_types(id) ON DELETE RESTRICT,
+  -- 4326 is the SRID (Spatial Reference System Identifier) for the WGS 84 coordinate system
+  coordinates GEOGRAPHY(Point, 4326) NOT NULL,
   address TEXT NOT NULL,
   country UUID NOT NULL
   -- Tags relationship to be implemented in a junction table
@@ -307,7 +308,7 @@ CREATE TABLE subjects (
   unique_identifier TEXT NOT NULL,
   name TEXT NOT NULL,
   description TEXT,
-  type UUID NOT NULL REFERENCES subject_types(id),
+  type UUID NOT NULL REFERENCES subject_types(id) ON DELETE RESTRICT,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
@@ -340,11 +341,11 @@ CREATE TABLE i18n_tasks (
 -- TaskRecord
 CREATE TABLE task_records (
   id UUID PRIMARY KEY,
-  task_id UUID NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
+  task_id UUID NOT NULL REFERENCES tasks(id) ON DELETE RESTRICT,
   date TIMESTAMP NOT NULL,
   result TEXT NOT NULL,
   comments TEXT NOT NULL,
-  time_record UUID NOT NULL,
+  time_record UUID NOT NULL REFERENCES time_records(id) ON DELETE RESTRICT,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
@@ -371,12 +372,13 @@ CREATE TABLE users (
   birthdate DATE NOT NULL,
   gender UUID NOT NULL,
   nid TEXT,
-  telephone TEXT,
-  address TEXT,
-  country UUID,
-  education_level UUID,
-  education_field UUID,
-  job UUID,
+  telephone TEXT NOT NULL,
+  address TEXT NOT NULL,
+  country UUID NOT NULL,
+  education_level UUID NOT NULL,
+  education_field UUID NOT NULL,
+  job UUID NOT NULL,
+  annual_salary_in_euro NOT NULL INTEGER,
   su BOOLEAN NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
@@ -397,9 +399,62 @@ CREATE TABLE work_assignments (
   -- relationships with users, subjects, locations, groups, tasks, tags, task_records, action_records to be implemented separately
 );
 
+-- Ocurrences
+CREATE TABLE i18n_occurrences (
+  id UUID PRIMARY KEY,
+  occurrence_type_id UUID NOT NULL REFERENCES occurrence_types(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE occurrence_types (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
+);
+
+CREATE TABLE occurrences (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL,
+  created_by UUID NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL,
+  image_id UUID,
+  type_id UUID NOT NULL REFERENCES occurrence_types(id) ON DELETE RESTRICT,
+  location TEXT,
+  -- Additional fields for relationships with subjects, users, etc., will be managed via junction tables
+  time_record UUID NOT NULL REFERENCES time_records(id) ON DELETE RESTRICT
+);
+
+
 -- Junction Tables:
 
 -- Tags ------
+
+-- Junction table for occurrences tags
+CREATE TABLE occurrence_tags (
+  occurrence_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (occurrence_id, tag_id),
+  CONSTRAINT fk_occurrence_tag_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE,
+  CONSTRAINT fk_occurrence_tag_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
+
+-- Junction Table for occurrence type Tags
+CREATE TABLE occurrence_type_tags (
+  occurrence_type_id UUID NOT NULL,
+  tag_id UUID NOT NULL,
+  PRIMARY KEY (occurrence_type_id, tag_id),
+  CONSTRAINT fk_occurrence_type_tags_occurrence_type FOREIGN KEY (occurrence_type_id) REFERENCES occurrence_types(id) ON DELETE CASCADE,
+  CONSTRAINT fk_occurrence_type_tags_tag FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+);
 
 -- Junction Table for Group Tags
 CREATE TABLE group_tags (
@@ -592,7 +647,23 @@ CREATE TABLE subject_action_records (
   CONSTRAINT fk_subject_action_records_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE
 );
 
+-- Junction Table for subjects and ocurrences
+CREATE TABLE subject_occurrences (
+  subject_id UUID NOT NULL,
+  occurrence_id UUID NOT NULL,
+  PRIMARY KEY (subject_id, occurrence_id),
+  CONSTRAINT fk_subject_occurrences_subject FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+  CONSTRAINT fk_subject_occurrences_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE
+);
+
 -- Groups -------
+
+-- Junction Table for Countries and Groups
+CREATE TABLE group_countries (
+  group_id UUID NOT NULL REFERENCES groups(id) ON DELETE CASCADE,
+  country_id UUID NOT NULL REFERENCES countries(id) ON DELETE CASCADE,
+  PRIMARY KEY (group_id, country_id)
+);
 
 -- Junction Table for Locations and groups
 CREATE TABLE location_groups (

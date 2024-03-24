@@ -36,4 +36,5 @@ export type ActionRecord = {
   deleted: boolean;
   time_record: TimeRecord;
   tags: Tag[];
+  occurrence_records?: string[];
 }
