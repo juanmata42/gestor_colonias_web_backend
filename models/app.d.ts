@@ -8,7 +8,7 @@ export type App = {
   created_at: Date;
   updated_at?: Date;
   parent_apps?: string[];
-  children_apps: string[];
+  children_apps?: string[];
   i18n: i18nApp[];
   tags: Tag[];
   levels: number[];

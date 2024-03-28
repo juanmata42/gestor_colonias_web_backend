@@ -255,7 +255,7 @@ CREATE TABLE locations (
   -- 4326 is the SRID (Spatial Reference System Identifier) for the WGS 84 coordinate system
   coordinates GEOGRAPHY(Point, 4326) NOT NULL,
   address TEXT NOT NULL,
-  country UUID NOT NULL
+  country UUID NOT NULL REFERENCES countries(id) ON DELETE RESTRICT
   -- Tags relationship to be implemented in a junction table
 );
 
@@ -389,7 +389,6 @@ CREATE TABLE users (
   CONSTRAINT fk_user_job FOREIGN KEY (job) REFERENCES jobs(id)
 );
 
-
 -- WorkAssignment
 CREATE TABLE work_assignments (
   id UUID PRIMARY KEY,
@@ -397,6 +396,18 @@ CREATE TABLE work_assignments (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL
   -- relationships with users, subjects, locations, groups, tasks, tags, task_records, action_records to be implemented separately
+);
+
+-- i18nWorkAssignment
+CREATE TABLE i18n_work_assignments (
+  id UUID PRIMARY KEY,
+  work_assignment_id UUID NOT NULL REFERENCES work_assignments(id) ON DELETE CASCADE,
+  language TEXT NOT NULL,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP,
+  deleted BOOLEAN NOT NULL
 );
 
 -- Ocurrences
@@ -428,13 +439,13 @@ CREATE TABLE occurrences (
   deleted BOOLEAN NOT NULL,
   image_id UUID,
   type_id UUID NOT NULL REFERENCES occurrence_types(id) ON DELETE RESTRICT,
-  location TEXT,
+  location UUID REFERENCES locations(id) ON DELETE RESTRICT,
   -- Additional fields for relationships with subjects, users, etc., will be managed via junction tables
   time_record UUID NOT NULL REFERENCES time_records(id) ON DELETE RESTRICT
 );
 
 
--- Junction Tables:
+-- Junction Tables: ------------------------
 
 -- Tags ------
 
@@ -757,9 +768,134 @@ CREATE TABLE group_children (
   CONSTRAINT fk_group_children_child_group FOREIGN KEY (child_group_id) REFERENCES groups(id) ON DELETE CASCADE
 );
 
--- Other relationships junction tables -------
+-- Junction Table for Group and Occurrences
+CREATE TABLE group_occurrences (
+  group_id UUID NOT NULL,
+  occurrence_id UUID NOT NULL,
+  PRIMARY KEY (group_id, occurrence_id),
+  CONSTRAINT fk_group_occurrences_group FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
+  CONSTRAINT fk_group_occurrences_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE
+);
 
--- Junction Table for App permissions and Roles (roles can have multiple app permissions)
+-- Ocurrences -------
+
+-- Junction Table for Occurrences and Users
+CREATE TABLE occurrence_users (
+  occurrence_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  PRIMARY KEY (occurrence_id, user_id),
+  CONSTRAINT fk_occurrence_users_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE,
+  CONSTRAINT fk_occurrence_users_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Occurrences and Action Records
+CREATE TABLE occurrence_action_records (
+  occurrence_id UUID NOT NULL,
+  action_record_id UUID NOT NULL,
+  PRIMARY KEY (occurrence_id, action_record_id),
+  CONSTRAINT fk_occurrence_action_records_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE,
+  CONSTRAINT fk_occurrence_action_records_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Occurrences and Task Records
+CREATE TABLE occurrence_task_records (
+  occurrence_id UUID NOT NULL,
+  task_record_id UUID NOT NULL,
+  PRIMARY KEY (occurrence_id, task_record_id),
+  CONSTRAINT fk_occurrence_task_records_occurrence FOREIGN KEY (occurrence_id) REFERENCES occurrences(id) ON DELETE CASCADE,
+  CONSTRAINT fk_occurrence_task_records_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE
+);
+
+-- Tasks -------
+
+-- Junction Table for Work Assignments and Tasks
+CREATE TABLE work_assignment_tasks (
+  work_assignment_id UUID NOT NULL,
+  task_id UUID NOT NULL,
+  PRIMARY KEY (work_assignment_id, task_id),
+  CONSTRAINT fk_work_assignment_tasks_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE,
+  CONSTRAINT fk_work_assignment_tasks_task FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Task Records and Users
+CREATE TABLE task_record_users (
+  task_record_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  PRIMARY KEY (task_record_id, user_id),
+  CONSTRAINT fk_task_record_users_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE,
+  CONSTRAINT fk_task_record_users_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Junction Table for Task Records and Locations
+CREATE TABLE task_record_locations (
+  task_record_id UUID NOT NULL,
+  location_id UUID NOT NULL,
+  PRIMARY KEY (task_record_id, location_id),
+  CONSTRAINT fk_task_record_locations_task_record FOREIGN KEY (task_record_id) REFERENCES task_records(id) ON DELETE CASCADE,
+  CONSTRAINT fk_task_record_locations_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
+);
+
+-- Users -------
+
+-- Junction Table for User and Locations
+CREATE TABLE user_locations (
+  user_id UUID NOT NULL,
+  location_id UUID NOT NULL,
+  PRIMARY KEY (user_id, location_id),
+  CONSTRAINT fk_user_locations_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_user_locations_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
+);
+
+-- Junction Table for User and Work Assignments
+CREATE TABLE user_work_assignments (
+  user_id UUID NOT NULL,
+  work_assignment_id UUID NOT NULL,
+  PRIMARY KEY (user_id, work_assignment_id),
+  CONSTRAINT fk_user_work_assignments_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_user_work_assignments_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE
+);
+
+-- Junction Table for User and Action Records
+CREATE TABLE user_action_records (
+  user_id UUID NOT NULL,
+  action_record_id UUID NOT NULL,
+  PRIMARY KEY (user_id, action_record_id),
+  CONSTRAINT fk_user_action_records_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_user_action_records_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE
+);
+
+-- Actions -------
+
+-- Junction Table for Action Records and Locations
+CREATE TABLE action_record_locations (
+  action_record_id UUID NOT NULL,
+  location_id UUID NOT NULL,
+  PRIMARY KEY (action_record_id, location_id),
+  CONSTRAINT fk_action_record_locations_action_record FOREIGN KEY (action_record_id) REFERENCES action_records(id) ON DELETE CASCADE,
+  CONSTRAINT fk_action_record_locations_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
+);
+
+-- Apps -------
+
+-- Junction Table for App and children apps
+CREATE TABLE app_children (
+  app_id UUID NOT NULL,
+  child_app_id UUID NOT NULL,
+  PRIMARY KEY (app_id, child_app_id),
+  CONSTRAINT fk_app_children_app FOREIGN KEY (app_id) REFERENCES apps(id) ON DELETE CASCADE,
+  CONSTRAINT fk_app_children_child_app FOREIGN KEY (child_app_id) REFERENCES apps(id) ON DELETE CASCADE
+);
+
+-- Junction Table for App and parent apps
+CREATE TABLE app_parents (
+  app_id UUID NOT NULL,
+  parent_app_id UUID NOT NULL,
+  PRIMARY KEY (app_id, parent_app_id),
+  CONSTRAINT fk_app_parents_app FOREIGN KEY (app_id) REFERENCES apps(id) ON DELETE CASCADE,
+  CONSTRAINT fk_app_parents_parent_app FOREIGN KEY (parent_app_id) REFERENCES apps(id) ON DELETE CASCADE
+);
+
+-- Junction Table for App permissions and Roles
 CREATE TABLE role_app_permissions (
   role_id UUID NOT NULL,
   app_permission_id UUID NOT NULL,
@@ -767,3 +903,15 @@ CREATE TABLE role_app_permissions (
   CONSTRAINT fk_role_app_permissions_role FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
   CONSTRAINT fk_role_app_permissions_app_permission FOREIGN KEY (app_permission_id) REFERENCES app_permissions(id) ON DELETE CASCADE
 );
+
+-- Work Assignments -------
+
+-- Junction Table for Work Assignments and Locations
+CREATE TABLE work_assignment_locations (
+  work_assignment_id UUID NOT NULL,
+  location_id UUID NOT NULL,
+  PRIMARY KEY (work_assignment_id, location_id),
+  CONSTRAINT fk_work_assignment_locations_work_assignment FOREIGN KEY (work_assignment_id) REFERENCES work_assignments(id) ON DELETE CASCADE,
+  CONSTRAINT fk_work_assignment_locations_location FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
+);
+
