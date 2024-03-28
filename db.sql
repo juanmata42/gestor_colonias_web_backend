@@ -214,7 +214,7 @@ CREATE TABLE groups (
   updated_at TIMESTAMP,
   deleted BOOLEAN NOT NULL,
   image_id UUID,
-  type UUID NOT NULL REFERENCES group_types(id) ON DELETE RESTRICT,
+  type UUID NOT NULL REFERENCES group_types(id) ON DELETE RESTRICT
   -- Additional relationships (locations, users, etc.) to be implemented separately
 );
 
@@ -378,7 +378,7 @@ CREATE TABLE users (
   education_level UUID NOT NULL,
   education_field UUID NOT NULL,
   job UUID NOT NULL,
-  annual_salary_in_euro NOT NULL INTEGER,
+  annual_salary_in_euro INTEGER NOT NULL,
   su BOOLEAN NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
