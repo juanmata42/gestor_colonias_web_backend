@@ -1,6 +1,3 @@
--- ============================================================
--- Countries Section
--- ============================================================
 CREATE TABLE "countries" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -20,9 +17,6 @@ CREATE TABLE "i18n_countries" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Education Section
--- ============================================================
 CREATE TABLE "education_levels" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -59,9 +53,6 @@ CREATE TABLE "i18n_education_fields" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Jobs Section
--- ============================================================
 CREATE TABLE "jobs" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -80,9 +71,6 @@ CREATE TABLE "i18n_jobs" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Genders Section
--- ============================================================
 CREATE TABLE "genders" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -94,16 +82,13 @@ CREATE TABLE "genders" (
 CREATE TABLE "i18n_genders" (
   "id" UUID PRIMARY KEY,
   "gender_id" UUID NOT NULL,
-  "language" TEXT NOT NULL,
   "name" TEXT NOT NULL,
+  "language" TEXT NOT NULL,
   "created_at" TIMESTAMP NOT NULL,
   "updated_at" TIMESTAMP,
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Tags Section
--- ============================================================
 CREATE TABLE "tags" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -112,9 +97,6 @@ CREATE TABLE "tags" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Actions Section
--- ============================================================
 CREATE TABLE "actions" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -146,19 +128,6 @@ CREATE TABLE "action_records" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Apps Section
--- ============================================================
-CREATE TABLE "apps" (
-  "id" UUID PRIMARY KEY,
-  "active" BOOLEAN NOT NULL,
-  "color" TEXT NOT NULL,
-  "image_id" UUID,
-  "levels" INTEGER[],
-  "created_at" TIMESTAMP NOT NULL,
-  "updated_at" TIMESTAMP
-);
-
 CREATE TABLE "i18n_apps" (
   "id" UUID PRIMARY KEY,
   "app_id" UUID NOT NULL,
@@ -169,15 +138,22 @@ CREATE TABLE "i18n_apps" (
   "description" TEXT NOT NULL
 );
 
+CREATE TABLE "apps" (
+  "id" UUID PRIMARY KEY,
+  "active" BOOLEAN NOT NULL,
+  "color" TEXT NOT NULL,
+  "image_id" UUID,
+  "levels" INTEGER[],
+  "created_at" TIMESTAMP NOT NULL,
+  "updated_at" TIMESTAMP
+);
+
 CREATE TABLE "app_permissions" (
   "id" UUID PRIMARY KEY,
   "app_id" UUID NOT NULL,
   "level" INTEGER NOT NULL
 );
 
--- ============================================================
--- Contacts Section
--- ============================================================
 CREATE TABLE "contacts" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -190,9 +166,6 @@ CREATE TABLE "contacts" (
   "user_id" UUID
 );
 
--- ============================================================
--- Group Types Section
--- ============================================================
 CREATE TABLE "group_types" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -212,9 +185,6 @@ CREATE TABLE "i18n_group_types" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Groups Section
--- ============================================================
 CREATE TABLE "groups" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -228,9 +198,6 @@ CREATE TABLE "groups" (
   "type" UUID NOT NULL
 );
 
--- ============================================================
--- Location Types Section
--- ============================================================
 CREATE TABLE "location_types" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -250,9 +217,6 @@ CREATE TABLE "i18n_location_types" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Locations Section
--- ============================================================
 CREATE TABLE "locations" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -261,14 +225,11 @@ CREATE TABLE "locations" (
   "deleted" BOOLEAN NOT NULL,
   "image_id" UUID,
   "type" UUID NOT NULL,
-  "coordinates" GEOGRAPHY(Point, 4326) NOT NULL,
+  "coordinates" GEOGRAPHY(Point,4326) NOT NULL,
   "address" TEXT NOT NULL,
   "country" UUID NOT NULL
 );
 
--- ============================================================
--- Roles Section
--- ============================================================
 CREATE TABLE "roles" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -288,9 +249,6 @@ CREATE TABLE "i18n_roles" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Subject Types Section
--- ============================================================
 CREATE TABLE "subject_types" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -310,9 +268,6 @@ CREATE TABLE "i18n_subject_types" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Subjects Section
--- ============================================================
 CREATE TABLE "subjects" (
   "id" UUID PRIMARY KEY,
   "unique_identifier" TEXT NOT NULL,
@@ -325,9 +280,6 @@ CREATE TABLE "subjects" (
   "image_id" UUID
 );
 
--- ============================================================
--- Tasks Section
--- ============================================================
 CREATE TABLE "tasks" (
   "id" UUID PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -347,9 +299,6 @@ CREATE TABLE "i18n_tasks" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Task Records Section
--- ============================================================
 CREATE TABLE "task_records" (
   "id" UUID PRIMARY KEY,
   "task_id" UUID NOT NULL,
@@ -362,9 +311,6 @@ CREATE TABLE "task_records" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Time Records Section
--- ============================================================
 CREATE TABLE "time_records" (
   "id" UUID PRIMARY KEY,
   "checkIn_time" TIMESTAMP NOT NULL,
@@ -374,9 +320,6 @@ CREATE TABLE "time_records" (
   "updated_at" TIMESTAMP
 );
 
--- ============================================================
--- Users Section
--- ============================================================
 CREATE TABLE "users" (
   "id" UUID PRIMARY KEY,
   "email" TEXT UNIQUE NOT NULL,
@@ -398,9 +341,6 @@ CREATE TABLE "users" (
   "updated_at" TIMESTAMP
 );
 
--- ============================================================
--- Work Assignments Section
--- ============================================================
 CREATE TABLE "work_assignments" (
   "id" UUID PRIMARY KEY,
   "created_at" TIMESTAMP NOT NULL,
@@ -419,9 +359,6 @@ CREATE TABLE "i18n_work_assignments" (
   "deleted" BOOLEAN NOT NULL
 );
 
--- ============================================================
--- Occurrences Section
--- ============================================================
 CREATE TABLE "i18n_occurrences" (
   "id" UUID PRIMARY KEY,
   "occurrence_type_id" UUID NOT NULL,
@@ -454,13 +391,6 @@ CREATE TABLE "occurrences" (
   "time_record" UUID NOT NULL
 );
 
--- ============================================================
--- Junction Tables Section
--- ============================================================
-
--- ============================================================
--- Tags Junction Tables
--- ============================================================
 CREATE TABLE "occurrence_tags" (
   "occurrence_id" UUID NOT NULL,
   "tag_id" UUID NOT NULL,
@@ -563,10 +493,6 @@ CREATE TABLE "work_assignment_tags" (
   PRIMARY KEY ("work_assignment_id", "tag_id")
 );
 
--- ============================================================
--- Subject Junction Tables
--- ============================================================
-
 CREATE TABLE "subject_groups" (
   "subject_id" UUID NOT NULL,
   "group_id" UUID NOT NULL,
@@ -608,10 +534,6 @@ CREATE TABLE "subject_occurrences" (
   "occurrence_id" UUID NOT NULL,
   PRIMARY KEY ("subject_id", "occurrence_id")
 );
-
--- ============================================================
--- Group Junction Tables
--- ============================================================
 
 CREATE TABLE "group_countries" (
   "group_id" UUID NOT NULL,
@@ -686,10 +608,6 @@ CREATE TABLE "group_occurrences" (
   PRIMARY KEY ("group_id", "occurrence_id")
 );
 
--- ============================================================
--- Ocurrence Junction Tables
--- ============================================================
-
 CREATE TABLE "occurrence_users" (
   "occurrence_id" UUID NOT NULL,
   "user_id" UUID NOT NULL,
@@ -707,10 +625,6 @@ CREATE TABLE "occurrence_task_records" (
   "task_record_id" UUID NOT NULL,
   PRIMARY KEY ("occurrence_id", "task_record_id")
 );
-
--- ============================================================
--- Task Junction Tables
--- ============================================================
 
 CREATE TABLE "work_assignment_tasks" (
   "work_assignment_id" UUID NOT NULL,
@@ -730,10 +644,6 @@ CREATE TABLE "task_record_locations" (
   PRIMARY KEY ("task_record_id", "location_id")
 );
 
--- ============================================================
--- User Junction Tables
--- ============================================================
-
 CREATE TABLE "user_locations" (
   "user_id" UUID NOT NULL,
   "location_id" UUID NOT NULL,
@@ -752,19 +662,11 @@ CREATE TABLE "user_action_records" (
   PRIMARY KEY ("user_id", "action_record_id")
 );
 
--- ============================================================
--- Action Junction Tables
--- ============================================================
-
 CREATE TABLE "action_record_locations" (
   "action_record_id" UUID NOT NULL,
   "location_id" UUID NOT NULL,
   PRIMARY KEY ("action_record_id", "location_id")
 );
-
--- ============================================================
--- App Junction Tables
--- ============================================================
 
 CREATE TABLE "app_children" (
   "app_id" UUID NOT NULL,
@@ -784,241 +686,274 @@ CREATE TABLE "role_app_permissions" (
   PRIMARY KEY ("role_id", "app_permission_id")
 );
 
--- ============================================================
--- Work assignment Junction Tables
--- ============================================================
-
 CREATE TABLE "work_assignment_locations" (
   "work_assignment_id" UUID NOT NULL,
   "location_id" UUID NOT NULL,
   PRIMARY KEY ("work_assignment_id", "location_id")
 );
 
--- ============================================================
--- Foreign Keys
--- ============================================================
-
--- ============================================================
--- Foreign Key Constraints for Internationalization (i18n) Tables
--- ============================================================
 ALTER TABLE "i18n_countries" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_education_levels" ADD FOREIGN KEY ("education_level_id") REFERENCES "education_levels" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_education_fields" ADD FOREIGN KEY ("education_field_id") REFERENCES "education_fields" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_jobs" ADD FOREIGN KEY ("job_id") REFERENCES "jobs" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_genders" ADD FOREIGN KEY ("gender_id") REFERENCES "genders" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_actions" ADD FOREIGN KEY ("action_id") REFERENCES "actions" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Constraints for Records and Action Tables
--- ============================================================
 ALTER TABLE "action_records" ADD FOREIGN KEY ("action_id") REFERENCES "actions" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "action_records" ADD FOREIGN KEY ("time_record") REFERENCES "time_records" ("id") ON DELETE RESTRICT;
 
--- ============================================================
--- App and Permissions Constraints
--- ============================================================
 ALTER TABLE "i18n_apps" ADD CONSTRAINT "fk_app_id" FOREIGN KEY ("app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "app_permissions" ADD FOREIGN KEY ("app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- User Related Constraints
--- ============================================================
 ALTER TABLE "contacts" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE SET NULL;
-ALTER TABLE "users" ADD CONSTRAINT "fk_user_gender" FOREIGN KEY ("gender") REFERENCES "genders" ("id");
-ALTER TABLE "users" ADD CONSTRAINT "fk_user_country" FOREIGN KEY ("country") REFERENCES "countries" ("id");
-ALTER TABLE "users" ADD CONSTRAINT "fk_user_education_level" FOREIGN KEY ("education_level") REFERENCES "education_levels" ("id");
-ALTER TABLE "users" ADD CONSTRAINT "fk_user_education_field" FOREIGN KEY ("education_field") REFERENCES "education_fields" ("id");
-ALTER TABLE "users" ADD CONSTRAINT "fk_user_job" FOREIGN KEY ("job") REFERENCES "jobs" ("id");
 
--- ============================================================
--- Group, Location, and Subject Type Constraints
--- ============================================================
 ALTER TABLE "i18n_group_types" ADD FOREIGN KEY ("group_type_id") REFERENCES "group_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "groups" ADD FOREIGN KEY ("type") REFERENCES "group_types" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "i18n_location_types" ADD FOREIGN KEY ("location_type_id") REFERENCES "location_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "locations" ADD FOREIGN KEY ("type") REFERENCES "location_types" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "locations" ADD FOREIGN KEY ("country") REFERENCES "countries" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "i18n_roles" ADD FOREIGN KEY ("role_id") REFERENCES "roles" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_subject_types" ADD FOREIGN KEY ("subject_type_id") REFERENCES "subject_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subjects" ADD FOREIGN KEY ("type") REFERENCES "subject_types" ("id") ON DELETE RESTRICT;
 
--- ============================================================
--- Task, Work Assignment, Occurrences, and Related Constraints
--- ============================================================
 ALTER TABLE "i18n_tasks" ADD FOREIGN KEY ("task_id") REFERENCES "tasks" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "task_records" ADD FOREIGN KEY ("task_id") REFERENCES "tasks" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "task_records" ADD FOREIGN KEY ("time_record") REFERENCES "time_records" ("id") ON DELETE RESTRICT;
+
+ALTER TABLE "users" ADD CONSTRAINT "fk_user_gender" FOREIGN KEY ("gender") REFERENCES "genders" ("id");
+
+ALTER TABLE "users" ADD CONSTRAINT "fk_user_country" FOREIGN KEY ("country") REFERENCES "countries" ("id");
+
+ALTER TABLE "users" ADD CONSTRAINT "fk_user_education_level" FOREIGN KEY ("education_level") REFERENCES "education_levels" ("id");
+
+ALTER TABLE "users" ADD CONSTRAINT "fk_user_education_field" FOREIGN KEY ("education_field") REFERENCES "education_fields" ("id");
+
+ALTER TABLE "users" ADD CONSTRAINT "fk_user_job" FOREIGN KEY ("job") REFERENCES "jobs" ("id");
+
 ALTER TABLE "i18n_work_assignments" ADD FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "i18n_occurrences" ADD FOREIGN KEY ("occurrence_type_id") REFERENCES "occurrence_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrences" ADD FOREIGN KEY ("type_id") REFERENCES "occurrence_types" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "occurrences" ADD FOREIGN KEY ("location") REFERENCES "locations" ("id") ON DELETE RESTRICT;
+
 ALTER TABLE "occurrences" ADD FOREIGN KEY ("time_record") REFERENCES "time_records" ("id") ON DELETE RESTRICT;
 
--- ============================================================
--- Tags and Junction Tables Constraints
--- ============================================================
 ALTER TABLE "occurrence_tags" ADD CONSTRAINT "fk_occurrence_tag_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrence_tags" ADD CONSTRAINT "fk_occurrence_tag_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "occurrence_type_tags" ADD CONSTRAINT "fk_occurrence_type_tags_occurrence_type" FOREIGN KEY ("occurrence_type_id") REFERENCES "occurrence_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrence_type_tags" ADD CONSTRAINT "fk_occurrence_type_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_tags" ADD CONSTRAINT "fk_group_tags_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_tags" ADD CONSTRAINT "fk_group_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_type_tags" ADD CONSTRAINT "fk_group_type_tags_group_type" FOREIGN KEY ("group_type_id") REFERENCES "group_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_type_tags" ADD CONSTRAINT "fk_group_type_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "location_tags" ADD CONSTRAINT "fk_location_tags_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "location_tags" ADD CONSTRAINT "fk_location_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "location_type_tags" ADD CONSTRAINT "fk_location_type_tags_location_type" FOREIGN KEY ("location_type_id") REFERENCES "location_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "location_type_tags" ADD CONSTRAINT "fk_location_type_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_tags" ADD CONSTRAINT "fk_subject_tags_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_tags" ADD CONSTRAINT "fk_subject_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_type_tags" ADD CONSTRAINT "fk_subject_type_tags_subject_type" FOREIGN KEY ("subject_type_id") REFERENCES "subject_types" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_type_tags" ADD CONSTRAINT "fk_subject_type_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "task_tags" ADD CONSTRAINT "fk_task_tags_task" FOREIGN KEY ("task_id") REFERENCES "tasks" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "task_tags" ADD CONSTRAINT "fk_task_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "task_record_tags" ADD CONSTRAINT "fk_task_record_tags_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "task_record_tags" ADD CONSTRAINT "fk_task_record_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "user_tags" ADD CONSTRAINT "fk_user_tags_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "user_tags" ADD CONSTRAINT "fk_user_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "action_tags" ADD CONSTRAINT "fk_action_tags_action" FOREIGN KEY ("action_id") REFERENCES "actions" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "action_tags" ADD CONSTRAINT "fk_action_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "action_record_tags" ADD CONSTRAINT "fk_action_record_tags_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "action_record_tags" ADD CONSTRAINT "fk_action_record_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "app_tags" ADD CONSTRAINT "fk_app_tags_app" FOREIGN KEY ("app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "app_tags" ADD CONSTRAINT "fk_app_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "contact_tags" ADD CONSTRAINT "fk_contact_tags_contact" FOREIGN KEY ("contact_id") REFERENCES "contacts" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "contact_tags" ADD CONSTRAINT "fk_contact_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "role_tags" ADD CONSTRAINT "fk_role_tags_role" FOREIGN KEY ("role_id") REFERENCES "roles" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "role_tags" ADD CONSTRAINT "fk_role_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "work_assignment_tags" ADD CONSTRAINT "fk_work_assignment_tags_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "work_assignment_tags" ADD CONSTRAINT "fk_work_assignment_tags_tag" FOREIGN KEY ("tag_id") REFERENCES "tags" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Subjects, Groups, and User Junction Tables Constraints
--- ============================================================
 ALTER TABLE "subject_groups" ADD CONSTRAINT "fk_subject_groups_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_groups" ADD CONSTRAINT "fk_subject_groups_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_users" ADD CONSTRAINT "fk_subject_users_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_users" ADD CONSTRAINT "fk_subject_users_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_locations" ADD CONSTRAINT "fk_subject_locations_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_locations" ADD CONSTRAINT "fk_subject_locations_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_work_assignments" ADD CONSTRAINT "fk_subject_work_assignments_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_work_assignments" ADD CONSTRAINT "fk_subject_work_assignments_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_task_records" ADD CONSTRAINT "fk_subject_task_records_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_task_records" ADD CONSTRAINT "fk_subject_task_records_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_action_records" ADD CONSTRAINT "fk_subject_action_records_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_action_records" ADD CONSTRAINT "fk_subject_action_records_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "subject_occurrences" ADD CONSTRAINT "fk_subject_occurrences_subject" FOREIGN KEY ("subject_id") REFERENCES "subjects" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "subject_occurrences" ADD CONSTRAINT "fk_subject_occurrences_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_countries" ADD FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_countries" ADD FOREIGN KEY ("country_id") REFERENCES "countries" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "location_groups" ADD CONSTRAINT "fk_location_groups_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "location_groups" ADD CONSTRAINT "fk_location_groups_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_users_roles" ADD CONSTRAINT "fk_group_users_roles_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_users_roles" ADD CONSTRAINT "fk_group_users_roles_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_users_roles" ADD CONSTRAINT "fk_group_users_roles_role" FOREIGN KEY ("role_id") REFERENCES "roles" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_contacts" ADD CONSTRAINT "fk_group_contacts_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_contacts" ADD CONSTRAINT "fk_group_contacts_contact" FOREIGN KEY ("contact_id") REFERENCES "contacts" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_tasks" ADD CONSTRAINT "fk_group_tasks_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_tasks" ADD CONSTRAINT "fk_group_tasks_task" FOREIGN KEY ("task_id") REFERENCES "tasks" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_roles" ADD CONSTRAINT "fk_group_roles_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_roles" ADD CONSTRAINT "fk_group_roles_role" FOREIGN KEY ("role_id") REFERENCES "roles" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_work_assignments" ADD CONSTRAINT "fk_group_work_assignments_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_work_assignments" ADD CONSTRAINT "fk_group_work_assignments_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_task_records" ADD CONSTRAINT "fk_group_task_records_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_task_records" ADD CONSTRAINT "fk_group_task_records_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_action_records" ADD CONSTRAINT "fk_group_action_records_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_action_records" ADD CONSTRAINT "fk_group_action_records_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_parents" ADD CONSTRAINT "fk_group_parents_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_parents" ADD CONSTRAINT "fk_group_parents_parent_group" FOREIGN KEY ("parent_group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_children" ADD CONSTRAINT "fk_group_children_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_children" ADD CONSTRAINT "fk_group_children_child_group" FOREIGN KEY ("child_group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "group_occurrences" ADD CONSTRAINT "fk_group_occurrences_group" FOREIGN KEY ("group_id") REFERENCES "groups" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "group_occurrences" ADD CONSTRAINT "fk_group_occurrences_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Occurrences, Actions, and Work Assignments Junction Tables Constraints
--- ============================================================
 ALTER TABLE "occurrence_users" ADD CONSTRAINT "fk_occurrence_users_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrence_users" ADD CONSTRAINT "fk_occurrence_users_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "occurrence_action_records" ADD CONSTRAINT "fk_occurrence_action_records_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrence_action_records" ADD CONSTRAINT "fk_occurrence_action_records_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "occurrence_task_records" ADD CONSTRAINT "fk_occurrence_task_records_occurrence" FOREIGN KEY ("occurrence_id") REFERENCES "occurrences" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "occurrence_task_records" ADD CONSTRAINT "fk_occurrence_task_records_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "work_assignment_tasks" ADD CONSTRAINT "fk_work_assignment_tasks_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "work_assignment_tasks" ADD CONSTRAINT "fk_work_assignment_tasks_task" FOREIGN KEY ("task_id") REFERENCES "tasks" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "task_record_users" ADD CONSTRAINT "fk_task_record_users_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "task_record_users" ADD CONSTRAINT "fk_task_record_users_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "task_record_locations" ADD CONSTRAINT "fk_task_record_locations_task_record" FOREIGN KEY ("task_record_id") REFERENCES "task_records" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "task_record_locations" ADD CONSTRAINT "fk_task_record_locations_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "user_locations" ADD CONSTRAINT "fk_user_locations_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "user_locations" ADD CONSTRAINT "fk_user_locations_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "user_work_assignments" ADD CONSTRAINT "fk_user_work_assignments_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "user_work_assignments" ADD CONSTRAINT "fk_user_work_assignments_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "user_action_records" ADD CONSTRAINT "fk_user_action_records_user" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "user_action_records" ADD CONSTRAINT "fk_user_action_records_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "action_record_locations" ADD CONSTRAINT "fk_action_record_locations_action_record" FOREIGN KEY ("action_record_id") REFERENCES "action_records" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "action_record_locations" ADD CONSTRAINT "fk_action_record_locations_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Apps Junction Tables Constraints
--- ============================================================
 ALTER TABLE "app_children" ADD CONSTRAINT "fk_app_children_app" FOREIGN KEY ("app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "app_children" ADD CONSTRAINT "fk_app_children_child_app" FOREIGN KEY ("child_app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "app_parents" ADD CONSTRAINT "fk_app_parents_app" FOREIGN KEY ("app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "app_parents" ADD CONSTRAINT "fk_app_parents_parent_app" FOREIGN KEY ("parent_app_id") REFERENCES "apps" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Roles and Permissions Junction Tables Constraints
--- ============================================================
 ALTER TABLE "role_app_permissions" ADD CONSTRAINT "fk_role_app_permissions_role" FOREIGN KEY ("role_id") REFERENCES "roles" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "role_app_permissions" ADD CONSTRAINT "fk_role_app_permissions_app_permission" FOREIGN KEY ("app_permission_id") REFERENCES "app_permissions" ("id") ON DELETE CASCADE;
 
--- ============================================================
--- Additional Junction Tables Constraints for Work Assignments
--- ============================================================
 ALTER TABLE "work_assignment_locations" ADD CONSTRAINT "fk_work_assignment_locations_work_assignment" FOREIGN KEY ("work_assignment_id") REFERENCES "work_assignments" ("id") ON DELETE CASCADE;
+
 ALTER TABLE "work_assignment_locations" ADD CONSTRAINT "fk_work_assignment_locations_location" FOREIGN KEY ("location_id") REFERENCES "locations" ("id") ON DELETE CASCADE;
